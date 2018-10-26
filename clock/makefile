@@ -1,2 +1,2 @@
 all:
-	g++ -o c.o printTime.cpp
+	g++ -o c.o Clock.cpp
