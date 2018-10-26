@@ -1,2 +1,2 @@
 all:
-	g++ sysUsage.cpp -o c.o
+	g++ SystemUsageWidget.cpp -o c.o

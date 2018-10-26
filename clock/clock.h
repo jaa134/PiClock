@@ -1,6 +1,6 @@
+const bool DEFAULT_24_HOUR = false;
 class Clock //:PiClockApp?
 {
-	const bool DEFAULT_24_HOUR = false;
 	bool clock24hr;
 	public:
 		Clock();
