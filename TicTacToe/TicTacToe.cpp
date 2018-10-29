@@ -1,4 +1,4 @@
-
+#include <unistd.h>
 #include <iostream>
 #include <stdio.h>
 #include <vector>	
@@ -7,8 +7,14 @@
 #include <exception>
 #include <sstream>
 #include <string>
+#include <exception>
 
 #include "TicTacToe.h"
+
+const char* UnavailableSquareException::what() const throw(){
+	return "That square is unavailable! Try again.";
+}
+
 TicTacToe::TicTacToe(Difficulty difficulty){
 	switch(difficulty){
 		case Beginner:
@@ -22,18 +28,9 @@ TicTacToe::TicTacToe(Difficulty difficulty){
 			break;
 	}
 
-	for(int row = 0; row < 3; row++){
-		for(int col = 0; col < 3; col++){
-
-			board[row][col] = 0;
-
-			Square square;
-			square.X = row;
-			square.Y = col;
-			unfilledSquares.push_back(square);
-		}
-	}
+	points = 0;
 }
+
 
 //computer places an 'O' on a random unoccupied square on the board.
 //returns null if this move did not finish the game, otherwise returs game result
@@ -134,7 +131,113 @@ MoveResult TicTacToe::userMove(Square square){
 	}
 }
 
+MoveResult TicTacToe::playGame(){
 
+	//resets board, refills unfilledSquares with all squares
+	for(int row = 0; row < 3; row++){
+		for(int col = 0; col < 3; col++){
+			board[row][col] = 0;
+
+			Square square;
+			square.X = row;
+			square.Y = col;
+			unfilledSquares.push_back(square);
+		}
+	}
+
+	MoveResult result;
+	std::string str;
+	Square square;
+	bool validSquare;
+	//user and computer alternate turns until result is reached
+	while(true){
+		//User Makes move
+		try
+		{
+			std::cout << "Enter coordinates of square to place X\n";
+			std::cout << "Row:\t";
+			getline(std::cin,str);
+			std::stringstream(str) >> square.X;
+
+			std::cout << "Column:\t";
+			getline(std::cin,str);
+			std::stringstream(str) >> square.Y;
+
+			validSquare = false;
+			for(int i = 0; i < unfilledSquares.size(); i++){
+				if(square.X == unfilledSquares.at(i).X){
+					if(square.Y == unfilledSquares.at(i).Y){
+						validSquare = true;
+						break;
+					}
+				}
+			}
+
+			//if user tried to place an X in an out of bounds square or one which already had a symbol in it
+			if (!validSquare || square.Y > 2 || square.X > 2){
+				UnavailableSquareException exc;
+				throw exc;
+			}
+		}
+		//Print warning message and have user enter a new square
+		catch (std::exception& exc){
+			std::cout << exc.what() << std::endl;
+			continue;
+		}
+
+		result = userMove(square);
+		printBoard();
+		if(result == Win){
+			return Win;
+		}
+		else if(result == Tie){
+			return Tie;
+		}
+		printf("---------------------------\n");
+		result = computerMove();
+
+		usleep(1000000);
+		printBoard();
+		if(result == Win){
+			return Loss;
+		}
+		else if(result == Tie){
+			return Tie;
+		}
+		printf("---------------------------\n");
+
+	}
+}
+
+void TicTacToe::ticTacToeGame(){
+	printf("You have to get %d points to complete the challenge\n", pointsThreshold);
+	printf("You are awarded:\n2 points for a win,\n1 point for a tie,\nand 0 points for a loss.\n");
+	printf("You have X and go first. Good luck!\n\n");
+
+	MoveResult result;	
+	while(points < pointsThreshold){
+		result = playGame();
+
+		switch(result){
+			case Win:
+				points += 2;
+				printf("You Win!\n+2 points!\n");
+				break;
+			case Tie:
+				points += 1;
+				printf("Tie game.\n+1 point.\n");
+				break;
+			default:
+				printf("You lose.\n+0 points.\n");
+				break;
+		}
+
+		printf("You now have %d points.\n\n", points);
+	}
+
+	printf("Congratulations! You have completed the challenge!\n");
+		
+}
 	
 void TicTacToe::printBoard(){
 	for(int i = 0; i < 3 ; i++){
@@ -154,42 +257,5 @@ void TicTacToe::printBoard(){
 
 int main(){
 	TicTacToe test(Intermediate);
-
-	for(int i = 0; i < 9 ; i++){
-		MoveResult result;
-		result = test.computerMove();
-		test.printBoard();
-		if(result == Win){
-			printf("Computer wins\n");
-			break;
-		}
-		else if(result == Tie){
-			printf("Tie\n");
-			break;
-		}
-		printf("---------------------------\n");
-
-		std::string str;
-		Square square;
-
-		std::cout << "X:\t";
-		getline(std::cin,str);
-		std::stringstream(str) >> square.X;
-
-		std::cout << "Y:\t";
-		getline(std::cin,str);
-		std::stringstream(str) >> square.Y;
-
-		result = test.userMove(square);
-		test.printBoard();
-		if(result == Win){
-			printf("User wins\n");
-			break;
-		}
-		else if(result == Tie){
-			printf("Tie\n");
-			break;
-		}
-		printf("---------------------------\n");
-	}
+	test.ticTacToeGame();
 }

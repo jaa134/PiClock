@@ -1,11 +1,16 @@
 #define markX 1
 #define markO 2
+#include <exception>
 
 enum Difficulty {Beginner, Intermediate, Advanced};
 enum MoveResult {Win, Loss, Tie, Inconclusive};
 struct Square{
 	int X;
 	int Y;
+};
+
+class UnavailableSquareException: public std::exception{
+	virtual const char* what() const throw();
 };
 
 class TicTacToe //:extends Game
@@ -17,13 +22,14 @@ class TicTacToe //:extends Game
 
 	bool threeInARow(Square, int);
 	void addPoints(int);
-
-	public:
-	void playGame();
+	MoveResult playGame();
 	MoveResult userMove(Square);
-	TicTacToe(Difficulty);
 	void printBoard();
 	MoveResult computerMove();
+
+	public:
+	void ticTacToeGame();
+	TicTacToe(Difficulty);
 
 };
 
