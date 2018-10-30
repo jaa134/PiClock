@@ -9,6 +9,7 @@ void AlarmPage::init() {
     connect(alarm_manager, SIGNAL(alarmStop()), this, SLOT(navToMain()));
     connect(alarm_manager, SIGNAL(alarmStart()), this, SLOT(navToAlarm()));
     alarm_manager->init();
+    emit chunkLoaded();
 }
 
 void AlarmPage::navToMain() {

@@ -31,8 +31,6 @@ void AlarmManager::init() {
     //add a day if that time has already passed
     if (mSecs < 0)
         mSecs += QDateTime::currentDateTime().msecsTo(QDateTime::currentDateTime().addDays(1));
-    //convert to the nearest second
-    mSecs = mSecs / 1000 * 1000;
     startTimer->setInterval(mSecs);
     startTimer->start();
 }

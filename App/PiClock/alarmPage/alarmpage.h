@@ -17,6 +17,9 @@ private:
     Ui::PiClockApp *ui;
     AlarmManager *alarm_manager;
 
+signals:
+    void chunkLoaded();
+
 private slots:
     void navToMain();
     void navToAlarm();
