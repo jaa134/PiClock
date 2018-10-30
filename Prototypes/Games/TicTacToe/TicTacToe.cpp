@@ -9,7 +9,7 @@
 #include <string>
 #include <exception>
 
-#include "TicTacToe.h"
+#include "TicTacToe.hpp"
 
 const char* UnavailableSquareException::what() const throw(){
 	return "That square is unavailable! Try again.";
@@ -94,8 +94,8 @@ bool TicTacToe::threeInARow(Square square, int mark){
 		//bottom left to top right diagonal
 		//square is on this diagonal if it's in the middle or incdices are not equal
 		if((squareX == 1 && squareY == 1) || (squareX != squareY)){
-			if(board[(squareX + 1)%3][(squareY - 1)%3] == mark){
-				if(board[(squareX + 2)%3][(squareY - 2)%3] == mark){
+			if(board[(squareX - 1)%3][(squareY + 1)%3] == mark){
+				if(board[(squareX - 2)%3][(squareY + 2)%3] == mark){
 					return true;
 				}
 			}
@@ -111,12 +111,7 @@ MoveResult TicTacToe::userMove(Square square){
 	board[square.X][square.Y] = markX; 
 
 	//finds square in unfilledSquares which matches inputted square
-	for(int i = 0; i < unfilledSquares.size(); i++){
-		if(unfilledSquares.at(i).X == square.X && unfilledSquares.at(i).Y == square.Y){
-			unfilledSquares.erase(unfilledSquares.begin() + i);
-			break;
-		}
-	}
+	removeMarkedSquare(square);
 
 	//check if this move caused user to win. If so, return win
 	if(threeInARow(square, markX)){
@@ -148,12 +143,12 @@ MoveResult TicTacToe::playGame(){
 	MoveResult result;
 	std::string str;
 	Square square;
-	bool validSquare;
 	//user and computer alternate turns until result is reached
 	while(true){
 		//User Makes move
 		try
 		{
+			//input square from user
 			std::cout << "Enter coordinates of square to place X\n";
 			std::cout << "Row:\t";
 			getline(std::cin,str);
@@ -163,18 +158,9 @@ MoveResult TicTacToe::playGame(){
 			getline(std::cin,str);
 			std::stringstream(str) >> square.Y;
 
-			validSquare = false;
-			for(int i = 0; i < unfilledSquares.size(); i++){
-				if(square.X == unfilledSquares.at(i).X){
-					if(square.Y == unfilledSquares.at(i).Y){
-						validSquare = true;
-						break;
-					}
-				}
-			}
 
 			//if user tried to place an X in an out of bounds square or one which already had a symbol in it
-			if (!validSquare || square.Y > 2 || square.X > 2){
+			if (!isValidSquare(square)){
 				UnavailableSquareException exc;
 				throw exc;
 			}
@@ -239,6 +225,40 @@ void TicTacToe::ticTacToeGame(){
 		
 }
 	
+bool TicTacToe::isValidSquare(Square square){
+	bool validSquare = false;
+	for(int i = 0; i < unfilledSquares.size(); i++){
+		if(square.X == unfilledSquares.at(i).X){
+			if(square.Y == unfilledSquares.at(i).Y){
+				validSquare = true;
+				break;
+			}
+		}
+	}
+
+	//if user tried to place an X in an out of bounds square or one which already had a symbol in it
+	if (!validSquare || square.Y > 2 || square.X > 2){return false;}
+	else {return true;}
+}
+
+//finds and removes square in unfilledSquares which matches inputted square.
+void TicTacToe::removeMarkedSquare(Square square){
+	for(int i = 0; i < unfilledSquares.size(); i++){
+		if(unfilledSquares.at(i).X == square.X && unfilledSquares.at(i).Y == square.Y){
+			unfilledSquares.erase(unfilledSquares.begin() + i);
+			break;
+		}
+	}
+}
+
+void TicTacToe::clearBoard(){
+	for(int i = 0; i < 3 ; i++){
+		for(int j = 0; j < 3 ; j++){
+			board[i][j] = 0;
+		}
+	}
+}
+
 void TicTacToe::printBoard(){
 	for(int i = 0; i < 3 ; i++){
 		for(int j = 0; j < 3 ; j++){
@@ -255,7 +275,7 @@ void TicTacToe::printBoard(){
 }
 	
 
-int main(){
+int TicTacToe::exec(){
 	TicTacToe test(Intermediate);
 	test.ticTacToeGame();
 }

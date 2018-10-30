@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <bits/stdc++.h>
-#include "SystemUsageWidget.h"
+#include "SystemUsageWidget.hpp"
 using namespace std;
 
 SystemUsageWidget::SystemUsageWidget(){
@@ -9,11 +9,11 @@ SystemUsageWidget::SystemUsageWidget(){
 }
 
 void SystemUsageWidget::printSystemUsage(){
-	system("./printStats.sh");
+	system("./printStats.sh > stats.txt");
 }
 
 
-int main(){
+int SystemUsageWidget::exec(){
 	SystemUsageWidget test;
 	test.printSystemUsage();
 }
