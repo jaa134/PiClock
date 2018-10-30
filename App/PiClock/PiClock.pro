@@ -68,6 +68,9 @@ FORMS += \
     mainPage/holidaycountdownwidget.ui \
     mainPage/systemstatisticswidget.ui \
 
+INCLUDEPATH += $$PWD/../PiClockLib
+LIBS += -L$$OUT_PWD/../PiClockLib -lPiClockLib
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

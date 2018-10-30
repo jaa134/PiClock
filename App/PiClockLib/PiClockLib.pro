@@ -1,14 +1,17 @@
-QT += core testlib
-QT -= gui
-TARGET = PiClockIntegrationTests
+#-------------------------------------------------
+#
+# Project created by QtCreator 2018-10-30T16:05:37
+#
+#-------------------------------------------------
 
-CONFIG += c++11 console
-CONFIG -= app_bundle
-CONFIG += testcase
-TEMPLATE = app
+QT       -= gui
+
+TARGET = PiClockLib
+TEMPLATE = lib
+CONFIG += staticlib
 
 # The following define makes your compiler emit warnings if you use
-# any feature of Qt which as been marked deprecated (the exact warnings
+# any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -19,13 +22,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp \
-    applicationtest.cpp
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+        piclocklib.cpp
 
 HEADERS += \
-    applicationtest.h
+        piclocklib.h
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+}
