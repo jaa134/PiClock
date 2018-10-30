@@ -1,5 +1,5 @@
 #include "piclockapp.h"
-#include "alarmPage/alarm.h"
+#include "models/alarm.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -22,10 +22,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        piclocklib.cpp
+        piclocklib.cpp \
+        managers/alarmmanager.cpp \
+        managers/settingsmanager.cpp \
+        managers/widgetmanager.cpp \
+        models/alarm.cpp
 
 HEADERS += \
-        piclocklib.h
+        piclocklib.h \
+        managers/alarmmanager.h \
+        managers/settingsmanager.h \
+        managers/widgetmanager.h \
+        models/alarm.h
+
 unix {
     target.path = /usr/lib
     INSTALLS += target

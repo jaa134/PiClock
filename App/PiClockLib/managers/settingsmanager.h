@@ -1,7 +1,10 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
-#include "alarmPage/alarm.h"
+#define HOURFORMAT12 "h:mmap"
+#define HOURFORMAT24 "HH:mm"
+
+#include "models/alarm.h"
 #include "QList"
 #include "QSettings"
 #include "QString"

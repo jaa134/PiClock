@@ -27,7 +27,6 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     piclockapp.cpp \
-    settingsmanager.cpp \
     mainPage/appclock.cpp \
     mainPage/forecastwidget.cpp \
     mainPage/holidaycountdownwidget.cpp \
@@ -35,16 +34,12 @@ SOURCES += \
     mainPage/quoteswidget.cpp \
     mainPage/systemstatisticswidget.cpp \
     mainPage/weatherwidget.cpp \
-    mainPage/widgetmanager.cpp \
     mainPage/worldclockwidget.cpp \
     settingsPage/settingspage.cpp \
-    alarmPage/alarm.cpp \
     alarmPage/alarmpage.cpp \
-    alarmPage/alarmmanager.cpp \
 
 HEADERS += \
     piclockapp.h \
-    settingsmanager.h \
     mainPage/appclock.h \
     mainPage/forecastwidget.h \
     mainPage/holidaycountdownwidget.h \
@@ -52,12 +47,9 @@ HEADERS += \
     mainPage/quoteswidget.h \
     mainPage/systemstatisticswidget.h \
     mainPage/weatherwidget.h \
-    mainPage/widgetmanager.h \
     mainPage/worldclockwidget.h \
     settingsPage/settingspage.h \
-    alarmPage/alarm.h \
     alarmPage/alarmpage.h \
-    alarmPage/alarmmanager.h
 
 FORMS += \
     piclockapp.ui \

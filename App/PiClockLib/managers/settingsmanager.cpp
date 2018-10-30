@@ -1,6 +1,4 @@
 #include "settingsmanager.h"
-#include "mainPage/appclock.h"
-#include "QString"
 
 #define COMPANY "393Team"
 #define PRODUCT "PiClock"
@@ -21,7 +19,7 @@
 
 
 QString SettingsManager::defaultClockTimeFormat() {
-    return AppClock::HourFormat_12;
+    return HOURFORMAT12;
 }
 
 QString SettingsManager::clockTimeFormat() {

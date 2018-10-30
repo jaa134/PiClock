@@ -2,7 +2,7 @@
 #define ALARMPAGE_H
 
 #include "ui_piclockapp.h"
-#include "alarmmanager.h"
+#include "managers/alarmmanager.h"
 #include "QObject"
 
 class AlarmPage : public QObject

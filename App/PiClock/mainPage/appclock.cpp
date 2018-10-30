@@ -1,14 +1,11 @@
 #include "appclock.h"
-#include "settingsmanager.h"
+#include "managers/settingsmanager.h"
 #include "QTime"
 #include "QDate"
 
 AppClock::AppClock() {}
 
 AppClock::~AppClock() {}
-
-QString AppClock::HourFormat_12 = "h:mmap";
-QString AppClock::HourFormat_24 = "HH:mm";
 
 void AppClock::start() {
     time_format = new QString(SettingsManager::clockTimeFormat());

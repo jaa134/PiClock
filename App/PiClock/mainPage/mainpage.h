@@ -3,7 +3,7 @@
 
 #include "ui_piclockapp.h"
 #include "appclock.h"
-#include "widgetmanager.h"
+#include "managers/widgetmanager.h"
 #include "QObject"
 #include "QThread"
 #include "QString"

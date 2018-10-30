@@ -2,7 +2,7 @@
 #define SETTINGSPAGE_H
 
 #include "ui_piclockapp.h"
-#include "alarmPage/alarm.h"
+#include "models/alarm.h"
 #include "QObject"
 #include "QList"
 

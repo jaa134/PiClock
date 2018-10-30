@@ -1,7 +1,6 @@
 #include "settingspage.h"
-#include "settingsmanager.h"
-#include "./alarmPage/alarmmanager.h"
-#include "./mainPage/appclock.h"
+#include "managers/settingsmanager.h"
+#include "managers/alarmmanager.h"
 #include "QTime"
 #include "QMetaEnum"
 
@@ -95,9 +94,9 @@ void SettingsPage::updateAlarmList() {
 
 void SettingsPage::loadSettings() {
     QString timeFormat = SettingsManager::clockTimeFormat();
-    if (timeFormat == AppClock::HourFormat_12)
+    if (timeFormat == HOURFORMAT12)
         ui->clockTimeFormatOptions->setCurrentIndex(0);
-    else if (timeFormat == AppClock::HourFormat_24)
+    else if (timeFormat == HOURFORMAT24)
         ui->clockTimeFormatOptions->setCurrentIndex(1);
     else
         ui->clockTimeFormatOptions->setCurrentIndex(-1);
@@ -138,9 +137,9 @@ void SettingsPage::restore() {
     setPageEnabled(false);
 
     QString defaultClockTimeFormat = SettingsManager::defaultClockTimeFormat();
-    if (defaultClockTimeFormat == AppClock::HourFormat_12)
+    if (defaultClockTimeFormat == HOURFORMAT12)
         ui->clockTimeFormatOptions->setCurrentIndex(0);
-    else if (defaultClockTimeFormat == AppClock::HourFormat_24)
+    else if (defaultClockTimeFormat == HOURFORMAT24)
         ui->clockTimeFormatOptions->setCurrentIndex(1);
     else
         ui->clockTimeFormatOptions->setCurrentIndex(-1);
@@ -174,9 +173,9 @@ void SettingsPage::save() {
     setPageEnabled(false);
 
     if (ui->clockTimeFormatOptions->currentIndex() <= 0)
-        SettingsManager::setClockTimeFormat(AppClock::HourFormat_12);
+        SettingsManager::setClockTimeFormat(HOURFORMAT12);
     else if (ui->clockTimeFormatOptions->currentIndex() == 1)
-        SettingsManager::setClockTimeFormat(AppClock::HourFormat_24);
+        SettingsManager::setClockTimeFormat(HOURFORMAT24);
 
     SettingsManager::setWidgetTransitionDuration(ui->slideDurationSlider->value() * 1000);
 

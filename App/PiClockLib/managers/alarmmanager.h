@@ -1,7 +1,7 @@
 #ifndef ALARMMANAGER_H
 #define ALARMMANAGER_H
 
-#include "alarm.h"
+#include "models/alarm.h"
 #include "QObject"
 #include "QTimer"
 #include "QList"

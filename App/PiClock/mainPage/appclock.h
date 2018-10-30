@@ -12,9 +12,6 @@ class AppClock : public QObject
 public:
     AppClock();
     ~AppClock();
-    static QString HourFormat_12;
-    static QString HourFormat_24;
-
 
 private:
     QString *time_format;
