@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="start">
      <widget class="QLabel" name="logo">
@@ -220,7 +220,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -363,6 +363,84 @@
        <attribute name="title">
         <string>Alarms</string>
        </attribute>
+       <widget class="QComboBox" name="alarmGameEdit">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>85</y>
+          <width>370</width>
+          <height>45</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="alarmDifficultyEdit">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>20</y>
+          <width>180</width>
+          <height>45</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QTimeEdit" name="alarmTimeEdit">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>180</width>
+          <height>45</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="alarmSetButton">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>150</y>
+          <width>180</width>
+          <height>45</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Set</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="alarmList">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>6</y>
+          <width>350</width>
+          <height>300</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="widgets">
        <attribute name="title">
@@ -664,6 +742,29 @@
       </property>
       <property name="text">
        <string>Cancel</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="alarm">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>800</width>
+        <height>480</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>100</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>ALARM</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>

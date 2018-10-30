@@ -2,7 +2,9 @@
 #define SETTINGSPAGE_H
 
 #include "ui_piclockapp.h"
-#include <QObject>
+#include "alarmPage/alarm.h"
+#include "QObject"
+#include "QList"
 
 class SettingsPage : public QObject
 {
@@ -15,13 +17,18 @@ public:
 
 private:
     Ui::PiClockApp *ui;
+    QList<Alarm *> alarms;
     void loadSettings();
+    void sortAlarms();
+    void updateAlarmList();
+    void setPageEnabled(bool);
 
 signals:
     void chunkLoaded();
 
 private slots:
     void showNewSlideDurationValue();
+    void addAlarm();
     void navToMain();
     void cancel();
     void restore();

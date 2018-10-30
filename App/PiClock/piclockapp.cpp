@@ -9,6 +9,7 @@ PiClockApp::PiClockApp(QWidget *parent) : QMainWindow(parent), ui(new Ui::PiCloc
     ui->setupUi(this);
     mainPage = new MainPage(ui);
     settingsPage = new SettingsPage(ui);
+    alarmPage = new AlarmPage(ui);
 }
 
 PiClockApp::~PiClockApp()
@@ -21,6 +22,7 @@ void PiClockApp::init() {
     initWindow();
     mainPage->init();
     settingsPage->init();
+    alarmPage->init();
 }
 
 void PiClockApp::initWindow() {

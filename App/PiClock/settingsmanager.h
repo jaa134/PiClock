@@ -1,8 +1,10 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
-#include <QSettings>
-#include <QString>
+#include "alarmPage/alarm.h"
+#include "QList"
+#include "QSettings"
+#include "QString"
 
 class SettingsManager
 {
@@ -15,6 +17,10 @@ public:
     static int defaultWidgetTransitionDuration();
     static int widgetTransitionDuration();
     static void setWidgetTransitionDuration(int);
+
+    static QList<Alarm *> defaultAlarms();
+    static QList<Alarm *> alarms();
+    static void setAlarms(QList<Alarm *>);
 
     static bool defaultIsWeatherEnabled();
     static bool defaultIsForecastEnabled();

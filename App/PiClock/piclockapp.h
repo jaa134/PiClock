@@ -3,6 +3,7 @@
 
 #include "mainPage/mainpage.h"
 #include "settingsPage/settingspage.h"
+#include "alarmPage/alarmpage.h"
 #include "QMainWindow"
 #include "QString"
 
@@ -23,6 +24,7 @@ private:
     Ui::PiClockApp *ui;
     MainPage *mainPage;
     SettingsPage *settingsPage;
+    AlarmPage *alarmPage;
     void initWindow();
 
 signals:

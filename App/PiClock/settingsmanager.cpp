@@ -9,6 +9,8 @@
 #define CLOCKTIME_KEY "clocktime"
 #define SLIDE_KEY "slide"
 
+#define ALARM_KEY "alarm"
+
 #define WIDGETS_KEY "tabwidgets"
 #define WEATHER_KEY "weather"
 #define FORECAST_KEY "forecast"
@@ -53,6 +55,31 @@ void SettingsManager::setWidgetTransitionDuration(int duration) {
     QString key("");
     key += GENERAL_KEY "/" SLIDE_KEY "/duration";
     settings.setValue(key, duration);
+}
+
+
+QList<Alarm *> SettingsManager::defaultAlarms() {
+    return QList<Alarm *>();
+}
+
+QList<Alarm *> SettingsManager::alarms() {
+    QList<Alarm *> alarms = QList<Alarm *>();
+    QSettings settings(COMPANY, PRODUCT);
+    QString key(ALARM_KEY);
+    QList<Alarm::Data> data;
+    data = settings.value(key).value<QList<Alarm::Data>>();
+    foreach (Alarm::Data d, data)
+        alarms.append(new Alarm(d));
+    return alarms;
+}
+
+void SettingsManager::setAlarms(QList<Alarm *> alarms) {
+    QSettings settings(COMPANY, PRODUCT);
+    QString key(ALARM_KEY);
+    QList<Alarm::Data> data;
+    foreach (Alarm *a, alarms)
+        data.append(a->data());
+    settings.setValue(key, QVariant::fromValue(data));
 }
 
 

@@ -28,30 +28,36 @@ SOURCES += \
     main.cpp \
     piclockapp.cpp \
     settingsmanager.cpp \
-    mainPage/mainpage.cpp \
     mainPage/appclock.cpp \
-    mainPage/widgetmanager.cpp \
-    settingsPage/settingspage.cpp \
-    mainPage/weatherwidget.cpp \
     mainPage/forecastwidget.cpp \
-    mainPage/quoteswidget.cpp \
-    mainPage/worldclockwidget.cpp \
     mainPage/holidaycountdownwidget.cpp \
-    mainPage/systemstatisticswidget.cpp
+    mainPage/mainpage.cpp \
+    mainPage/quoteswidget.cpp \
+    mainPage/systemstatisticswidget.cpp \
+    mainPage/weatherwidget.cpp \
+    mainPage/widgetmanager.cpp \
+    mainPage/worldclockwidget.cpp \
+    settingsPage/settingspage.cpp \
+    alarmPage/alarm.cpp \
+    alarmPage/alarmpage.cpp \
+    alarmPage/alarmmanager.cpp \
 
 HEADERS += \
     piclockapp.h \
     settingsmanager.h \
-    mainPage/mainpage.h \
     mainPage/appclock.h \
-    mainPage/widgetmanager.h \
-    settingsPage/settingspage.h \
-    mainPage/weatherwidget.h \
     mainPage/forecastwidget.h \
-    mainPage/quoteswidget.h \
-    mainPage/worldclockwidget.h \
     mainPage/holidaycountdownwidget.h \
-    mainPage/systemstatisticswidget.h
+    mainPage/mainpage.h \
+    mainPage/quoteswidget.h \
+    mainPage/systemstatisticswidget.h \
+    mainPage/weatherwidget.h \
+    mainPage/widgetmanager.h \
+    mainPage/worldclockwidget.h \
+    settingsPage/settingspage.h \
+    alarmPage/alarm.h \
+    alarmPage/alarmpage.h \
+    alarmPage/alarmmanager.h
 
 FORMS += \
     piclockapp.ui \
@@ -60,7 +66,7 @@ FORMS += \
     mainPage/quoteswidget.ui \
     mainPage/worldclockwidget.ui \
     mainPage/holidaycountdownwidget.ui \
-    mainPage/systemstatisticswidget.ui
+    mainPage/systemstatisticswidget.ui \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
