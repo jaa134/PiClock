@@ -52,20 +52,28 @@ public:
     friend QDataStream & operator << (QDataStream &out, const Data &d)
     {
         out << d.time;
-        out << d.type;
-        out << d.difficulty;
+
+        QString type = QString::number(int(d.type));
+        out << type;
+
+        QString difficulty = QString::number(int(d.difficulty));
+        out << difficulty;
+
         return out;
     }
 
     friend QDataStream & operator >> (QDataStream &in, Data &d)
     {
         in >> d.time;
+
         QString type = "";
         in >> type;
         d.type = GameType(type.toInt());
+
         QString difficulty = "";
         in >> difficulty;
         d.difficulty = GameDifficulty(difficulty.toInt());
+
         return in;
     }
 

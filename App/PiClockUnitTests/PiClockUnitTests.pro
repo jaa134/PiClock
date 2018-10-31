@@ -2,9 +2,8 @@ QT += core testlib
 QT -= gui
 TARGET = PiClockUnitTests
 
-CONFIG += c++11 console
+CONFIG += c++11 console testcase
 CONFIG -= app_bundle
-CONFIG += testcase
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -19,9 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp \
+    main.cpp \
     applicationtest.cpp \
-    managers/settingsmanagertests.cpp
+    managers/settingsmanagertests.cpp \
+    managers/alarmmanagertests.cpp \
+    managers/widgetmanagertests.cpp \
+    models/alarmtests.cpp
 
 INCLUDEPATH += $$PWD/../PiClockLib
 LIBS += -L$$OUT_PWD/../PiClockLib -lPiClockLib
@@ -33,4 +35,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     applicationtest.h \
-    managers/settingsmanagertests.h
+    managers/settingsmanagertests.h \
+    managers/alarmmanagertests.h \
+    managers/widgetmanagertests.h \
+    models/alarmtests.h

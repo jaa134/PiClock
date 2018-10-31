@@ -13,11 +13,14 @@ class AlarmManager : public QObject
 public:
     AlarmManager();
     void init();
+    Alarm* nextAlarm();
+    QTimer* startTimer();
+    QTimer* stopTimer();
 
 private:
-    Alarm *nextAlarm;
-    QTimer *startTimer;
-    QTimer *stopTimer;
+    Alarm *next_alarm;
+    QTimer *start_timer;
+    QTimer *stop_timer;
     QList<Alarm *> sortAlarms(QList<Alarm *>);
 
 signals:

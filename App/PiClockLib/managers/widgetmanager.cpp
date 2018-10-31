@@ -13,6 +13,14 @@ WidgetManager::WidgetManager() {}
 
 WidgetManager::~WidgetManager() {}
 
+QQueue<int> WidgetManager::enabledWidgetIndexes() {
+    return enabled_widget_indexes;
+}
+
+QTimer* WidgetManager::updateTimer() {
+    return update_timer;
+}
+
 void WidgetManager::start() {    
     if (SettingsManager::isWeatherEnabled())
         enabled_widget_indexes.enqueue(WEATHER);

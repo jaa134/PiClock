@@ -13,6 +13,8 @@ class SettingsManager
 {
 
 public:
+    static void reset();
+
     static QString defaultClockTimeFormat();
     static QString clockTimeFormat();
     static void setClockTimeFormat(QString);

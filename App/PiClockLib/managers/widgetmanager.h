@@ -12,6 +12,8 @@ class WidgetManager : public QObject
 public:
     WidgetManager();
     ~WidgetManager();
+    QQueue<int> enabledWidgetIndexes();
+    QTimer* updateTimer();
 
 private:
     QQueue<int> enabled_widget_indexes;

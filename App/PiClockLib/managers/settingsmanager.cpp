@@ -17,6 +17,11 @@
 #define HOLIDAYS_KEY "holidays"
 #define SYSSTATS_KEY "sysstats"
 
+void SettingsManager::reset() {
+    QSettings settings(COMPANY, PRODUCT);
+    settings.clear();
+}
+
 
 QString SettingsManager::defaultClockTimeFormat() {
     return HOURFORMAT12;

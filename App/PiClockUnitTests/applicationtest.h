@@ -1,17 +1,14 @@
 #ifndef APPLICATIONTEST_H
 #define APPLICATIONTEST_H
 
-#include <QObject>
+#include "QObject"
 
 class ApplicationTest : public QObject
 {
     Q_OBJECT
-public:
-    explicit ApplicationTest(QObject *parent = nullptr);
 
-signals:
+private slots:
 
-public slots:
 };
 
 #endif // APPLICATIONTEST_H
