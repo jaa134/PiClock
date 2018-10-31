@@ -30,9 +30,9 @@ TEST_CASE("Check Game Over", "[GameOver]") {
 TEST_CASE("Flip Cards", "[FlipCards]") {
     MemoryCard m = MemoryCard();
     m.createBoard();
-    m.flipCards(0,0,0,1);
-    REQUIRE(m.cardstatus[0][0] == true);
-    REQUIRE(m.cardstatus[0][1] == true);
+    m.flipCards(1,0,1,1);
+    REQUIRE(m.cardstatus[1][0] == true);
+    REQUIRE(m.cardstatus[1][1] == true);
 }
 
 /*
