@@ -20,7 +20,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    applicationtest.cpp
+    applicationtest.cpp \
+    managers/settingsmanagertests.cpp
 
 INCLUDEPATH += $$PWD/../PiClockLib
 LIBS += -L$$OUT_PWD/../PiClockLib -lPiClockLib
@@ -31,4 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    applicationtest.h
+    applicationtest.h \
+    managers/settingsmanagertests.h
