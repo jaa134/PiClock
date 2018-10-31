@@ -30,10 +30,19 @@ void MemoryCard::checkGameOver() {
 }
 
 /*
+ * function to create a temporary board
+ */
+void MemoryCard::createBoard() {
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 2; j++) {
+            cards[i][j] = i;
+        }
+    }
+}
+/*
  * function to check of the game is over
  */
 void MemoryCard::initializeBoard() {
-    cardstatus[0][0] = false;
      // for each card,initialize each card and set card status to false
     for(int i = 0; i < 4; i++) {
         for(int j = 0; j < 2; j++) {
@@ -79,7 +88,10 @@ void MemoryCard::flipCards(int row, int col, int row2, int col2) {
     }
 }
 
-void MemoryCard::shuffle(int card[4][2])
+/*
+ * function to shuffle the cards
+ */
+void MemoryCard::shuffle(int deck[4][2])
 {
     // Initialize seed randomly
     srand(time(0));
@@ -89,7 +101,7 @@ void MemoryCard::shuffle(int card[4][2])
             // Random for remaining positions.
             int r = i + (rand() % (4 - i));
             int r2 = j + (rand() % (2 - j));
-            swap(card[i][j], card[r][r2]);
+            swap(deck[i][j], deck[r][r2]);
         }
     }
 }
