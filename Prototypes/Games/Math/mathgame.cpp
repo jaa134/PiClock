@@ -1,47 +1,4 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <cstdlib>
-#include <cmath>
-#include <time.h>
-#include <vector>
-#include <random>
-
-using namespace std;
-
-/*
- * Global arrays that consist of values that we use for the range of values for the math game and the operators.
- */
-static int numberValues[40];
-static char operatorValues[4] = {'+', '-', '/', '*'};
-static char outputGuesses[4] = {'A', 'B', 'C', 'D'};
-
-/*
- * Public class that consists of the multiple choice math game initialization.
- */
-class MathGame{
-
-    public:
-
-    double firstValue;
-    double secondValue;
-    double correctValue;
-    char operatorV;
-    double wrongValues[3];
-    vector<double> allValues;
-    double userAnswer;
-    int correct = 0;
-    int difficulty = 4;
-
-    MathGame(){
-    }
-        void makeQuestion();
-        void correctAnswer();
-        void listOfAnswers();
-        void getQuestion();
-        void submitAnswer();
-        void evaluateAnswer();
-};
+#include "mathgame.hpp"
 
 /*
  * Function to make the Question.
@@ -176,17 +133,4 @@ void MathGame::evaluateAnswer(){
 
     cout << "The Alarm has been turned off!" << endl;
 
-}
-
-/*
- * Main function to run the program using an instance of the class MathGame.
- */
-int main(){
-    MathGame newGame;
-    newGame.evaluateAnswer();
-    //newGame.makeQuestion();
-    //newGame.correctAnswer();
-    //newGame.getQuestion();
-    //newGame.submitAnswer();
-    return 0;
 }
