@@ -1,22 +1,24 @@
+/*
+ * class for the memory card game
+ */
 #include "memorycard.h"
-#include "ui_memorycard.h"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <algorithm>
-
 
 using namespace std;
-void checkGameOver();
-void initializeBoard();
-void flipCards(int row, int col, int row2, int col2);
-static int cards[4][2];
-static bool cardstatus[4][2];  // array to store whether card is flipped or not, you can use char if bool doesn't work for you.
-static bool gameOver = false; // if bool doesn't work for you, use char in same way I told for cardstatus.
 
-void checkGameOver() {
+/*
+ * constructor for the memory card game
+ */
+MemoryCard::MemoryCard() {
+    gameOver = false;   // variable to see if game is over
+    bool cardstatus[4][2];  // variable to check the card status of each card
+}
+
+/*
+ * function to check of the game is over
+ */
+void MemoryCard::checkGameOver() {
     for(int i = 0; i < 4; i++) {
-        for(int j = 0; j < 2; j++) {
+        for(int j = 0; j < 2; j++) {                // for each card check card status
             if(cardstatus[i][j] == true) {
                 gameOver = true;
             }
@@ -27,31 +29,47 @@ void checkGameOver() {
     }
 }
 
-void initializeBoard() {
+/*
+ * function to check of the game is over
+ */
+void MemoryCard::initializeBoard() {
+    cardstatus[0][0] = false;
+     // for each card,initialize each card and set card status to false
     for(int i = 0; i < 4; i++) {
         for(int j = 0; j < 2; j++) {
             cards[i][j] = i;
+            cardstatus[i][j] = false;
         }
     }
-    // shuffle cards
-    random_shuffle(&cards[0][0], &cards[4][2]);
+    shuffle(cards);
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 2; j++) {
+            cout << cards[i][j];
+            cout << "\n";
+        }
+    }
 }
-void flipCards(int row, int col, int row2, int col2) {
+
+/*
+ * function to flip the cards
+ */
+void MemoryCard::flipCards(int row, int col, int row2, int col2) {
     if(row == row2 && col == col2) {
         throw "card can't be selected twice!\n";
     }
-    bool firstCardStatus = cardstatus[row][col];
-    bool secondCardStatus = cardstatus[row2][col2];
+    bool firstCardStatus = cardstatus[row][col];        // the status of the first card selected
+    bool secondCardStatus = cardstatus[row2][col2]; // the status of the second card selected
     if(firstCardStatus || secondCardStatus) {
         cout << "one or both of these cards are already flipped\n";
     }
     else {
-        int firstCard = cards[row][col];
-        int secondCard = cards[row2][col2];
+        int firstCard = cards[row][col];        // the first card selected
+        int secondCard = cards[row2][col2];     // the second card selected
 
         if(firstCard == secondCard) {
             cardstatus[row][col] = true;
             cardstatus[row2][col2] = true;
+            cout << "Match found! \n";
             checkGameOver();
         }
 
@@ -61,19 +79,35 @@ void flipCards(int row, int col, int row2, int col2) {
     }
 }
 
-int main()
+void MemoryCard::shuffle(int card[4][2])
+{
+    // Initialize seed randomly
+    srand(time(0));
+    for (int i = 0; i < 4;i++)
+    {
+        for(int j = 0; j < 2; j++) {
+            // Random for remaining positions.
+            int r = i + (rand() % (4 - i));
+            int r2 = j + (rand() % (2 - j));
+            swap(card[i][j], card[r][r2]);
+        }
+    }
+}
+/*
+ * fucntion to run the game
+ */
+int MemoryCard::exec()
 {
     initializeBoard();
     while(!gameOver) {
         // get row/col for both cards
         // call flippedCards
         int row1,row2,col1,col2;
-
-
         char comma;
+        
         cout<<"Please insert the first card row and column seperated by a comma.\n";
         cin>>row1>>comma>>col1;
-        cout<<"Please insert the first card row and column seperated by a comma.\n";
+        cout<<"Please insert the second card row and column seperated by a comma.\n";
         cin>>row2>>comma>>col2;
         try {
             flipCards(row1,col1,row2,col2);
@@ -83,18 +117,5 @@ int main()
 
     }
     cout << "Game Over!\n";
-}
-
-
-
-MemoryCard::MemoryCard(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MemoryCard)
-{
-    ui->setupUi(this);
-}
-
-MemoryCard::~MemoryCard()
-{
-    delete ui;
+    return 0;
 }
