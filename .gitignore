@@ -1,2 +1,14 @@
 build-App-Desktop_Qt_5_11_2_GCC_64bit-Debug/*
 build-App-Desktop_Qt_5_11_2_GCC_64bit-Debug/
+Prototypes/Games/MemoryCardGame/game
+Prototypes/Games/MemoryCardGame/test
+Prototypes/Games/Math/game
+Prototypes/Games/Math/test
+Prototypes/Games/TicTacToe/game
+Prototypes/Games/TicTacToe/test
+Prototypes/Widgets/sysUsage/stats.txt
+Prototypes/Widgets/sysUsage/sys
+Prototypes/Widgets/sysUsage/test
+**.DS_Store
+
+
