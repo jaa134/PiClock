@@ -27,7 +27,6 @@ void MathGame::makeQuestion(){
  * Function to retrieve the correct value of the question and input all that data in a vector.
  */
 void MathGame::correctAnswer(){
-
     switch(operatorV){
 
         case '+':
@@ -81,25 +80,16 @@ void MathGame::correctAnswer(){
  * Outputs to stdout the list of answers.
  */
 void MathGame::listOfAnswers(){
-
-    for(int i = 0; i < 4; i++){
-
+    for(int i = 0; i < 4; i++)
         cout << outputGuesses[i] << ": " << allValues[i] << endl;
-
-    }
-
     allValues.clear();
-
-
 }
 
 /*
  * Outputs the question with the list of answers.
  */
 void MathGame::getQuestion(){
-
     cout << "What is the solution to " << firstValue << " " << operatorV << " " << secondValue << "?\n";
-
     listOfAnswers();
 
 }
@@ -108,8 +98,10 @@ void MathGame::getQuestion(){
  * Retrieves the answer the user inputs and compares it to the correct value. Returns the respective response.
  */
 void MathGame::submitAnswer(){
-
+    //getline(cin, userAnswer, '\n');
     cin >> userAnswer;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if(userAnswer == correctValue){
         cout << "Your answer is correct!" << endl;
         correct++;
@@ -123,7 +115,6 @@ void MathGame::submitAnswer(){
  * Keeps track of the number of questions the user got correct.
  */
 void MathGame::evaluateAnswer(){
-
     while(correct != difficulty){
         makeQuestion();
         correctAnswer();

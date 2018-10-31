@@ -6,6 +6,7 @@
 #include <time.h>
 #include <vector>
 #include <random>
+#include <limits>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ class MathGame{
     char operatorV;
     double wrongValues[3];
     vector<double> allValues;
-    double userAnswer;
+    double userAnswer = 0;
     int correct = 0;
     int difficulty = 4;
 
