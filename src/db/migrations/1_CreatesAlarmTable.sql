@@ -1,0 +1,5 @@
+CREATE TABLE `Alarm` (
+	`Time`	TEXT NOT NULL,
+	`Game`	INTEGER NOT NULL,
+	`Difficulty`	INTEGER NOT NULL
+)

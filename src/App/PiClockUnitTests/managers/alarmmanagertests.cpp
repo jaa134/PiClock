@@ -1,0 +1,5 @@
+#include "alarmmanagertests.h"
+#include "QTest"
+#include "managers/alarmmanager.h"
+#include "managers/settingsmanager.h"
+#include "models/alarm.h"
