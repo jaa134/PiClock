@@ -12,6 +12,10 @@ void AlarmPage::init() {
     emit chunkLoaded();
 }
 
+void AlarmPage::onSettingsSaved() {
+    alarm_manager->init();
+}
+
 void AlarmPage::navToMain() {
     ui->layout->setCurrentIndex(1);
 }

@@ -34,9 +34,38 @@ void PiClockApp::initWindow() {
     ui->logo->setStyleSheet("color: #fff");
 
     //progress bar
-    connect(this, SIGNAL(loadFinished()), this, SLOT(transitionToMainPage()));
-    connect(mainPage, SIGNAL(chunkLoaded()), this, SLOT(updateProgressBar()));
-    connect(settingsPage, SIGNAL(chunkLoaded()), this, SLOT(updateProgressBar()));
+    connect(this, &PiClockApp::loadFinished, this, &PiClockApp::transitionToMainPage);
+    connect(mainPage, &MainPage::chunkLoaded, this, &PiClockApp::updateProgressBar);
+    connect(settingsPage, &SettingsPage::chunkLoaded, this, &PiClockApp::updateProgressBar);
+    connect(settingsPage, &SettingsPage::settingsSaved, alarmPage, &AlarmPage::onSettingsSaved);
+
+    //add custom scroll bars
+    ui->layout->setStyleSheet(QString(
+        "QScrollBar:vertical { "
+        "   background: #dddddd;"
+        "   width: 15px; "
+        "   margin: 0px 0px 0px 0px"
+        "}"
+        "QScrollBar::handle:vertical {"
+        "    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,"
+        "    stop: 0 rgb(160, 160, 160), stop: 0.5 rgb(160, 160, 160), stop:1 rgb(160, 160, 160));"
+        "    min-height: 0px;"
+        "}"
+        "QScrollBar::add-line:vertical {"
+        "    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,"
+        "    stop: 0 rgb(160, 160, 160), stop: 0.5 rgb(160, 160, 160),  stop:1 rgb(160, 160, 160));"
+        "    height: 0px;"
+        "    subcontrol-position: bottom;"
+        "    subcontrol-origin: margin;"
+        "}"
+        "QScrollBar::sub-line:vertical {"
+        "    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,"
+        "    stop: 0  rgb(160, 160, 160), stop: 0.5 rgb(160, 160, 160),  stop:1 rgb(160, 160, 160));"
+        "    height: 0 px;"
+        "    subcontrol-position: top;"
+        "    subcontrol-origin: margin;"
+        "}"
+    ));
 }
 
 void PiClockApp::transitionToMainPage() {

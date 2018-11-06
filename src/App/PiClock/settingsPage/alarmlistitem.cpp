@@ -17,9 +17,8 @@ AlarmListItem::~AlarmListItem()
     delete ui;
 }
 
-void AlarmListItem::makeAlarm(QTime time, Game::Type type, Game::Difficulty difficulty) {
+void AlarmListItem::makeAlarm(QTime time, Game::Type type, Game::Difficulty difficulty, QString timeFormat) {
     this->a = new Alarm(time, type, difficulty);
-    QString timeFormat = SettingsManager::clockTimeFormat();
     ui->label->setText(time.toString(timeFormat) + "  " + Game::gameTypeValue(type));
 }
 

@@ -22,7 +22,6 @@
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -55,9 +54,12 @@ public:
     QWidget *alarms;
     QComboBox *alarmGameEdit;
     QComboBox *alarmDifficultyEdit;
-    QTimeEdit *alarmTimeEdit;
     QPushButton *alarmSetButton;
     QListWidget *alarmList;
+    QListWidget *alarmTimeOptions;
+    QLabel *alarmTimeLabel;
+    QLabel *alarmGameLabel;
+    QLabel *alarmDifficultyLabel;
     QWidget *widgets;
     QCheckBox *wclockCheckbox;
     QCheckBox *forecastCheckbox;
@@ -205,27 +207,41 @@ public:
         alarms->setObjectName(QStringLiteral("alarms"));
         alarmGameEdit = new QComboBox(alarms);
         alarmGameEdit->setObjectName(QStringLiteral("alarmGameEdit"));
-        alarmGameEdit->setGeometry(QRect(20, 85, 370, 45));
+        alarmGameEdit->setGeometry(QRect(210, 50, 200, 45));
         alarmGameEdit->setFont(font4);
         alarmDifficultyEdit = new QComboBox(alarms);
         alarmDifficultyEdit->setObjectName(QStringLiteral("alarmDifficultyEdit"));
-        alarmDifficultyEdit->setGeometry(QRect(210, 20, 180, 45));
+        alarmDifficultyEdit->setGeometry(QRect(210, 150, 200, 45));
         alarmDifficultyEdit->setFont(font4);
-        alarmTimeEdit = new QTimeEdit(alarms);
-        alarmTimeEdit->setObjectName(QStringLiteral("alarmTimeEdit"));
-        alarmTimeEdit->setGeometry(QRect(20, 20, 180, 45));
-        QFont font7;
-        font7.setPointSize(16);
-        alarmTimeEdit->setFont(font7);
         alarmSetButton = new QPushButton(alarms);
         alarmSetButton->setObjectName(QStringLiteral("alarmSetButton"));
-        alarmSetButton->setGeometry(QRect(210, 150, 180, 45));
+        alarmSetButton->setGeometry(QRect(210, 245, 200, 45));
         alarmSetButton->setFont(font5);
         alarmList = new QListWidget(alarms);
         alarmList->setObjectName(QStringLiteral("alarmList"));
-        alarmList->setGeometry(QRect(420, 6, 350, 300));
+        alarmList->setGeometry(QRect(421, 0, 355, 312));
         alarmList->setFont(font6);
         alarmList->setStyleSheet(QStringLiteral(""));
+        alarmTimeOptions = new QListWidget(alarms);
+        alarmTimeOptions->setObjectName(QStringLiteral("alarmTimeOptions"));
+        alarmTimeOptions->setGeometry(QRect(0, 50, 200, 262));
+        alarmTimeOptions->setFont(font6);
+        alarmTimeOptions->setStyleSheet(QStringLiteral(""));
+        alarmTimeLabel = new QLabel(alarms);
+        alarmTimeLabel->setObjectName(QStringLiteral("alarmTimeLabel"));
+        alarmTimeLabel->setGeometry(QRect(0, 10, 200, 40));
+        alarmTimeLabel->setFont(font5);
+        alarmTimeLabel->setAlignment(Qt::AlignCenter);
+        alarmGameLabel = new QLabel(alarms);
+        alarmGameLabel->setObjectName(QStringLiteral("alarmGameLabel"));
+        alarmGameLabel->setGeometry(QRect(210, 10, 200, 40));
+        alarmGameLabel->setFont(font5);
+        alarmGameLabel->setAlignment(Qt::AlignCenter);
+        alarmDifficultyLabel = new QLabel(alarms);
+        alarmDifficultyLabel->setObjectName(QStringLiteral("alarmDifficultyLabel"));
+        alarmDifficultyLabel->setGeometry(QRect(210, 105, 200, 40));
+        alarmDifficultyLabel->setFont(font5);
+        alarmDifficultyLabel->setAlignment(Qt::AlignCenter);
         options->addTab(alarms, QString());
         widgets = new QWidget();
         widgets->setObjectName(QStringLiteral("widgets"));
@@ -297,30 +313,30 @@ public:
         settingsHeader = new QLabel(settings);
         settingsHeader->setObjectName(QStringLiteral("settingsHeader"));
         settingsHeader->setGeometry(QRect(10, 10, 250, 50));
-        QFont font8;
-        font8.setFamily(QStringLiteral("Tlwg Typo"));
-        font8.setPointSize(40);
-        settingsHeader->setFont(font8);
+        QFont font7;
+        font7.setFamily(QStringLiteral("Tlwg Typo"));
+        font7.setPointSize(40);
+        settingsHeader->setFont(font7);
         settingsSaveButton = new QPushButton(settings);
         settingsSaveButton->setObjectName(QStringLiteral("settingsSaveButton"));
         settingsSaveButton->setGeometry(QRect(665, 430, 125, 40));
-        QFont font9;
-        font9.setFamily(QStringLiteral("Tlwg Typo"));
-        font9.setPointSize(16);
-        settingsSaveButton->setFont(font9);
+        QFont font8;
+        font8.setFamily(QStringLiteral("Tlwg Typo"));
+        font8.setPointSize(16);
+        settingsSaveButton->setFont(font8);
         settingsCancelButton = new QPushButton(settings);
         settingsCancelButton->setObjectName(QStringLiteral("settingsCancelButton"));
         settingsCancelButton->setGeometry(QRect(520, 430, 125, 40));
-        settingsCancelButton->setFont(font9);
+        settingsCancelButton->setFont(font8);
         layout->addWidget(settings);
         alarm = new QWidget();
         alarm->setObjectName(QStringLiteral("alarm"));
         label = new QLabel(alarm);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(0, 0, 800, 480));
-        QFont font10;
-        font10.setPointSize(100);
-        label->setFont(font10);
+        QFont font9;
+        font9.setPointSize(100);
+        label->setFont(font9);
         label->setAlignment(Qt::AlignCenter);
         layout->addWidget(alarm);
         PiClockApp->setCentralWidget(centralWidget);
@@ -353,6 +369,9 @@ public:
         slideDurationValueLabel->setText(QApplication::translate("PiClockApp", "(seconds)", nullptr));
         options->setTabText(options->indexOf(general), QApplication::translate("PiClockApp", "General", nullptr));
         alarmSetButton->setText(QApplication::translate("PiClockApp", "Set", nullptr));
+        alarmTimeLabel->setText(QApplication::translate("PiClockApp", "Time", nullptr));
+        alarmGameLabel->setText(QApplication::translate("PiClockApp", "Game", nullptr));
+        alarmDifficultyLabel->setText(QApplication::translate("PiClockApp", "Difficulty", nullptr));
         options->setTabText(options->indexOf(alarms), QApplication::translate("PiClockApp", "Alarms", nullptr));
         wclockCheckbox->setText(QApplication::translate("PiClockApp", " World Clocks", nullptr));
         forecastCheckbox->setText(QApplication::translate("PiClockApp", " Forecast", nullptr));

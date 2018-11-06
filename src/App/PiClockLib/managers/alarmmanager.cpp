@@ -56,6 +56,6 @@ void AlarmManager::startAlarm() {
 
 void AlarmManager::stopAlarm() {
     stop_timer->stop();
-    DatabaseManager::removeAlarm(*next_alarm);
+    init();
     emit alarmStop();
 }

@@ -20,6 +20,9 @@ private:
 signals:
     void chunkLoaded();
 
+public slots:
+    void onSettingsSaved();
+
 private slots:
     void navToMain();
     void navToAlarm();

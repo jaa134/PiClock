@@ -18,11 +18,13 @@ public:
 
 private:
     Ui::PiClockApp *ui;
+    QString timeFormat;
     void loadSettings();
     void setPageEnabled(bool);
 
 signals:
     void chunkLoaded();
+    void settingsSaved();
 
 private slots:
     void showNewSlideDurationValue();

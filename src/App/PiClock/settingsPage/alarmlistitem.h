@@ -16,7 +16,7 @@ class AlarmListItem : public QWidget
 public:
     explicit AlarmListItem(QWidget *parent = nullptr);
     ~AlarmListItem();
-    void makeAlarm(QTime, Game::Type, Game::Difficulty);
+    void makeAlarm(QTime, Game::Type, Game::Difficulty, QString);
     void saveAlarm();
     Alarm *a;
 

@@ -14,6 +14,8 @@ SettingsPage::~SettingsPage() {
 }
 
 void SettingsPage::init() {
+    timeFormat = SettingsManager::clockTimeFormat();
+
     //main button
     ui->mainButton->setStyleSheet("border-image: url(:/images/back.png);");
     connect(ui->mainButton, SIGNAL(released()),this, SLOT(navToMain()));
@@ -33,11 +35,15 @@ void SettingsPage::init() {
     ui->slideDurationSlider->setRange(2,30);
     connect(ui->slideDurationSlider, SIGNAL(valueChanged(int)), this, SLOT(showNewSlideDurationValue()));
 
-    ui->alarmList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    ui->alarmList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->alarmList->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->alarmTimeEdit->setDisplayFormat(SettingsManager::clockTimeFormat());
-    ui->alarmTimeEdit->setTime(QTime(8, 0));
+    ui->alarmTimeOptions->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->alarmTimeOptions->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->alarmTimeOptions->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    int numOptions = 24 * 6;
+    QTime option(0, 0);
+    for (int i = 0; i < numOptions; i++) {
+        ui->alarmTimeOptions->addItem(option.toString(timeFormat));
+        option = option.addSecs(10 * 60);
+    }
     QMetaEnum gameType = QMetaEnum::fromType<Game::Type>();
     for(int i = 0; i < gameType.keyCount(); i++)
         ui->alarmGameEdit->addItem(Game::gameTypeValue(Game::Type(i)));
@@ -45,6 +51,11 @@ void SettingsPage::init() {
     for(int i = 0; i < gameDifficulty.keyCount(); i++)
         ui->alarmDifficultyEdit->addItem(Game::gameDifficultyValue(Game::Difficulty(i)));
     connect(ui->alarmSetButton, SIGNAL(released()), this, SLOT(setAlarm()));
+    ui->alarmList->setSelectionMode(QAbstractItemView::NoSelection);
+    ui->alarmList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    ui->alarmList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    emit chunkLoaded();
+
     //set ui values
     loadSettings();
     emit chunkLoaded();
@@ -61,7 +72,12 @@ void SettingsPage::showNewSlideDurationValue() {
 }
 
 void SettingsPage::setAlarm() {
-    QTime time = ui->alarmTimeEdit->time();
+    QModelIndex index = ui->alarmTimeOptions->currentIndex();
+    QString itemText = index.data(Qt::DisplayRole).toString();
+    if (itemText.isEmpty())
+        return;
+
+    QTime time = QTime::fromString(itemText, timeFormat);
     for (int i = 0; i < ui->alarmList->count(); i++) {
         QListWidgetItem *itemAtRow = ui->alarmList->item(i);
         QWidget *currentWidget = ui->alarmList->itemWidget(itemAtRow);
@@ -72,14 +88,13 @@ void SettingsPage::setAlarm() {
     Game::Type type = Game::Type(ui->alarmGameEdit->currentIndex());
     Game::Difficulty difficulty = Game::Difficulty(ui->alarmDifficultyEdit->currentIndex());
     addAlarm(time, type, difficulty);
-    ui->alarmTimeEdit->setTime(QTime(8, 0));
     ui->alarmGameEdit->setCurrentIndex(0);
     ui->alarmDifficultyEdit->setCurrentIndex(0);
 }
 
 void SettingsPage::addAlarm(QTime time, Game::Type type, Game::Difficulty difficulty) {
     AlarmListItem *widget = new AlarmListItem();
-    widget->makeAlarm(time, type, difficulty);
+    widget->makeAlarm(time, type, difficulty, timeFormat);
     widget->setFixedSize(350, 60);
 
     QListWidgetItem *item = new QListWidgetItem(ui->alarmList);
@@ -107,7 +122,6 @@ void SettingsPage::removeAlarm(AlarmListItem *widget) {
 }
 
 void SettingsPage::loadSettings() {
-    QString timeFormat = SettingsManager::clockTimeFormat();
     if (timeFormat == HOURFORMAT12)
         ui->clockTimeFormatOptions->setCurrentIndex(0);
     else if (timeFormat == HOURFORMAT24)
@@ -118,7 +132,7 @@ void SettingsPage::loadSettings() {
     ui->slideDurationSlider->setValue(SettingsManager::widgetTransitionDuration() / 1000);
     showNewSlideDurationValue();
 
-    ui->alarmTimeEdit->setTime(QTime(8, 0));
+    ui->alarmTimeOptions->scrollToTop();
     ui->alarmGameEdit->setCurrentIndex(0);
     ui->alarmDifficultyEdit->setCurrentIndex(0);
 
@@ -173,6 +187,7 @@ void SettingsPage::save() {
     SettingsManager::setIsHolidayCountdownEnabled(ui->holidaysCheckbox->isChecked());
     SettingsManager::setIsSystemStatsEnabled(ui->sysstatsCheckbox->isChecked());
 
+    emit settingsSaved();
     setPageEnabled(true);
 }
 
