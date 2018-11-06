@@ -37,7 +37,8 @@ SOURCES += \
     mainPage/worldclockwidget.cpp \
     settingsPage/settingspage.cpp \
     alarmPage/alarmpage.cpp \
-    settingsPage/alarmlistitem.cpp
+    settingsPage/alarmlistitem.cpp \
+    settingsPage/draglistwidget.cpp
 
 HEADERS += \
     piclockapp.h \
@@ -51,7 +52,8 @@ HEADERS += \
     mainPage/worldclockwidget.h \
     settingsPage/settingspage.h \
     alarmPage/alarmpage.h \
-    settingsPage/alarmlistitem.h
+    settingsPage/alarmlistitem.h \
+    settingsPage/draglistwidget.h
 
 FORMS += \
     piclockapp.ui \

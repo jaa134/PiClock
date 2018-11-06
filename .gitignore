@@ -11,4 +11,4 @@ Prototypes/Widgets/sysUsage/sys
 Prototypes/Widgets/sysUsage/test
 **.DS_Store
 **.db
-
+src/Build/**

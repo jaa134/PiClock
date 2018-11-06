@@ -411,7 +411,7 @@
          <string>Set</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="alarmList">
+       <widget class="DragListWidget" name="alarmList">
         <property name="geometry">
          <rect>
           <x>421</x>
@@ -429,7 +429,7 @@
          <string notr="true"/>
         </property>
        </widget>
-       <widget class="QListWidget" name="alarmTimeOptions">
+       <widget class="DragListWidget" name="alarmTimeOptions">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -822,6 +822,13 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>DragListWidget</class>
+   <extends>QListWidget</extends>
+   <header location="global">settingsPage/draglistwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
