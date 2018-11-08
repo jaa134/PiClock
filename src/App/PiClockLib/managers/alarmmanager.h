@@ -5,6 +5,7 @@
 #include "QObject"
 #include "QTimer"
 #include "QList"
+#include "QSoundEffect"
 
 class AlarmManager : public QObject
 {
@@ -19,6 +20,7 @@ private:
     Alarm *next_alarm;
     QTimer *start_timer;
     QTimer *stop_timer;
+    QSoundEffect *sound;
     QList<Alarm> sortAlarms(QList<Alarm>);
 
 signals:

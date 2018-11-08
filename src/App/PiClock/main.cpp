@@ -1,8 +1,6 @@
 #include "piclockapp.h"
 #include "managers/databasemanager.h"
-#include "models/alarm.h"
 #include "QApplication"
-#include "QtDebug"
 
 int main(int argc, char *argv[])
 {

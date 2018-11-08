@@ -3,7 +3,7 @@
 # Project created by QtCreator 2018-10-30T16:05:37
 #
 #-------------------------------------------------
-QT += core sql
+QT += core sql multimedia
 QT -= gui
 
 TARGET = PiClockLib

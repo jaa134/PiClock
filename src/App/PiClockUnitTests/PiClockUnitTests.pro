@@ -1,4 +1,4 @@
-QT += core testlib
+QT += core testlib multimedia
 QT -= gui
 TARGET = PiClockUnitTests
 
