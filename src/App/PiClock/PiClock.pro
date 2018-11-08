@@ -36,9 +36,10 @@ SOURCES += \
     mainPage/weatherwidget.cpp \
     mainPage/worldclockwidget.cpp \
     settingsPage/settingspage.cpp \
-    alarmPage/alarmpage.cpp \
     settingsPage/alarmlistitem.cpp \
-    settingsPage/draglistwidget.cpp
+    settingsPage/draglistwidget.cpp \
+    alarmPage/alarmpage.cpp \
+    alarmPage/mathgame.cpp
 
 HEADERS += \
     piclockapp.h \
@@ -51,9 +52,10 @@ HEADERS += \
     mainPage/weatherwidget.h \
     mainPage/worldclockwidget.h \
     settingsPage/settingspage.h \
-    alarmPage/alarmpage.h \
     settingsPage/alarmlistitem.h \
-    settingsPage/draglistwidget.h
+    settingsPage/draglistwidget.h \
+    alarmPage/alarmpage.h \
+    alarmPage/mathgame.h
 
 FORMS += \
     piclockapp.ui \
@@ -63,7 +65,11 @@ FORMS += \
     mainPage/worldclockwidget.ui \
     mainPage/holidaycountdownwidget.ui \
     mainPage/systemstatisticswidget.ui \
-    settingsPage/alarmlistitem.ui
+    settingsPage/alarmlistitem.ui \
+    alarmPage/mathgame.ui
+
+RESOURCES += \
+    resources.qrc
 
 INCLUDEPATH += $$PWD/../PiClockLib
 LIBS += -L$$OUT_PWD/../PiClockLib -lPiClockLib
@@ -72,6 +78,3 @@ LIBS += -L$$OUT_PWD/../PiClockLib -lPiClockLib
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    resources.qrc

@@ -15,6 +15,7 @@ public:
 
 private:
     Ui::PiClockApp *ui;
+    QTimer *timer_clock;
     AlarmManager *alarm_manager;
 
 signals:
@@ -25,7 +26,10 @@ public slots:
 
 private slots:
     void navToMain();
-    void navToAlarm();
+    void navToAlarm(Game::Type, Game::Difficulty);
+    void onGameOver();
+    void updatePointsLabel(int);
+    void updateRemainingTime();
 
 };
 

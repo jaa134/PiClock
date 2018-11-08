@@ -1,0 +1,133 @@
+#include "mathgame.h"
+#include "ui_mathgame.h"
+
+MathGame::MathGame(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::MathGame)
+{
+    ui->setupUi(this);
+
+    service = new MathGameService();
+
+    timer = new QTimer();
+    timer->setSingleShot(true);
+    timer->setInterval(1500);
+    connect(timer, &QTimer::timeout, this, &MathGame::nextQuestion);
+
+    isAcceptingInput = false;
+
+    connect(ui->answerButtonA, &QPushButton::released, this, &MathGame::onButtonA);
+    connect(ui->answerButtonB, &QPushButton::released, this, &MathGame::onButtonB);
+    connect(ui->answerButtonC, &QPushButton::released, this, &MathGame::onButtonC);
+    connect(ui->answerButtonD, &QPushButton::released, this, &MathGame::onButtonD);
+}
+
+MathGame::~MathGame()
+{
+    delete ui;
+}
+
+void MathGame::init(Game::Difficulty difficulty) {
+    service->reset(difficulty);
+    emit pointsUpdated(service->numPointsNeeded());
+    nextQuestion();
+}
+
+void MathGame::setInputEnabled(bool isEnabled) {
+    isAcceptingInput = isEnabled;
+}
+
+void MathGame::onButtonA() {
+    if (isAcceptingInput) {
+        setInputEnabled(false);
+        onAnswer(optionA);
+    }
+}
+
+void MathGame::onButtonB() {
+    if (isAcceptingInput) {
+        setInputEnabled(false);
+        onAnswer(optionB);
+    }
+}
+
+void MathGame::onButtonC() {
+    if (isAcceptingInput) {
+        setInputEnabled(false);
+        onAnswer(optionC);
+    }
+}
+
+void MathGame::onButtonD() {
+    if (isAcceptingInput) {
+        setInputEnabled(false);
+        onAnswer(optionD);
+    }
+}
+
+void MathGame::onAnswer(int option) {
+    bool isCorrect = service->answer(option);
+    if (isCorrect)
+        emit pointsUpdated(service->numPointsNeeded());
+
+    setAnswerStyles(isCorrect, option);
+    timer->start();
+}
+
+void MathGame::setAnswerStyles(bool isCorrect, int option) {
+    QString buttonBackgroundColor;
+
+    if (isCorrect) {
+        buttonBackgroundColor = "background-color: #47d147";
+    }
+    else {
+        buttonBackgroundColor = "background-color: #ff3333";
+    }
+
+    switch (option) {
+        case optionA: {
+            ui->answerButtonA->setStyleSheet(buttonBackgroundColor);
+            break;
+        }
+        case optionB: {
+            ui->answerButtonB->setStyleSheet(buttonBackgroundColor);
+            break;
+        }
+        case optionC: {
+            ui->answerButtonC->setStyleSheet(buttonBackgroundColor);
+            break;
+        }
+        case optionD: {
+            ui->answerButtonD->setStyleSheet(buttonBackgroundColor);
+            break;
+        }
+    }
+}
+
+void MathGame::nextQuestion() {
+    if (service->isWinner()) {
+        emit gameOver();
+        return;
+    }
+
+    setDefaultStyles();
+    displayQuestion();
+    setInputEnabled(true);
+}
+
+void MathGame::setDefaultStyles() {
+    QString buttonBackgroundColor = "background-color: rgb(210, 210, 210)";
+    ui->answerButtonA->setStyleSheet(buttonBackgroundColor);
+    ui->answerButtonB->setStyleSheet(buttonBackgroundColor);
+    ui->answerButtonC->setStyleSheet(buttonBackgroundColor);
+    ui->answerButtonD->setStyleSheet(buttonBackgroundColor);
+}
+
+void MathGame::displayQuestion() {
+    ui->questionLabel->setText(service->question.text);
+
+    ui->answerButtonA->setText(service->question.options[optionA].text);
+    ui->answerButtonB->setText(service->question.options[optionB].text);
+    ui->answerButtonC->setText(service->question.options[optionC].text);
+    ui->answerButtonD->setText(service->question.options[optionD].text);
+}

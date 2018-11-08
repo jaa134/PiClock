@@ -6,13 +6,13 @@
 class Game : public QObject
 {
     Q_OBJECT
+
 public:
     enum Type {
         TicTacToe,
         Concentration,
         Math,
-        Trivia,
-        Simon
+        Trivia
     };
     Q_ENUM(Type)
     static QString gameTypeValue(Type t) {
@@ -21,7 +21,6 @@ public:
             case Type::Concentration: return "Concentration";
             case Type::Math: return "Math";
             case Type::Trivia: return "Trivia";
-            case Type::Simon: return "Simon Says";
         }
         return "";
     }
@@ -40,6 +39,7 @@ public:
         }
         return "";
     }
+
 };
 
 #endif // GAME_H

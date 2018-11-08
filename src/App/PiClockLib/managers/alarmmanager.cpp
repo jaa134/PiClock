@@ -48,7 +48,7 @@ QList<Alarm> AlarmManager::sortAlarms(QList<Alarm> alarms) {
 }
 
 void AlarmManager::startAlarm() {
-    emit alarmStart();
+    emit alarmStarted(next_alarm->data().type, next_alarm->data().difficulty);
     int minutes = 5;
     stop_timer->setInterval(minutes * 60000);
     stop_timer->start();
@@ -57,5 +57,11 @@ void AlarmManager::startAlarm() {
 void AlarmManager::stopAlarm() {
     stop_timer->stop();
     init();
-    emit alarmStop();
+    emit alarmStopped();
+}
+
+QString AlarmManager::timeRemaining() {
+    int mSecsRemaining = stop_timer->remainingTime();
+    QTime time(0, 0);
+    return time.addMSecs(mSecsRemaining).toString("m:ss");
 }

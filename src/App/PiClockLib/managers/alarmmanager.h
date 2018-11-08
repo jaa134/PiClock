@@ -13,6 +13,8 @@ class AlarmManager : public QObject
 public:
     AlarmManager();
     void init();
+    QString timeRemaining();
+
 private:
     Alarm *next_alarm;
     QTimer *start_timer;
@@ -20,12 +22,14 @@ private:
     QList<Alarm> sortAlarms(QList<Alarm>);
 
 signals:
-    void alarmStart();
-    void alarmStop();
+    void alarmStarted(Game::Type, Game::Difficulty);
+    void alarmStopped();
+
+public slots:
+    void stopAlarm();
 
 private slots:
     void startAlarm();
-    void stopAlarm();
 
 };
 
