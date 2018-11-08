@@ -12,13 +12,13 @@ class DatabaseManager : public QObject
 
 public:
     static void initDb();
-
     static void addAlarm(Alarm);
     static void removeAlarm(Alarm);
     static void removeAlarms();
     static QList<Alarm> retrieveAlarms();
 
 private:
+    static void createDb();
     static QSqlQuery execQuery(QString);
 };
 

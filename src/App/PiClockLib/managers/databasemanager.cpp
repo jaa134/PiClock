@@ -11,10 +11,8 @@ void DatabaseManager::initDb() {
     QString dbPath = QCoreApplication::applicationDirPath() + "/../../db/PiClock.db";
     db.setDatabaseName(dbPath);
 
-    if (!db.open()) {
-        qDebug() << "ERROR: Database failed to connect...";
-        qDebug() << db.lastError().text();
-    }
+    if (db.tables().isEmpty())
+        createDb();
 }
 
 QSqlQuery DatabaseManager::execQuery(QString content) {
@@ -36,6 +34,16 @@ QSqlQuery DatabaseManager::execQuery(QString content) {
     }
 
     return query;
+}
+
+void DatabaseManager::createDb() {
+    QString query = ""
+                    "CREATE TABLE 'Alarm' ("
+                    "'Time' TEXT NOT NULL,"
+                    "'Type' INTEGER NOT NULL,"
+                    "'Difficulty' INTEGER NOT NULL"
+                    ");";
+    execQuery(query);
 }
 
 void DatabaseManager::addAlarm(Alarm a) {
