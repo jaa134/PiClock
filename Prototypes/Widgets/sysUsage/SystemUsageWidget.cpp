@@ -9,7 +9,7 @@ SystemUsageWidget::SystemUsageWidget(){
 }
 
 void SystemUsageWidget::printSystemUsage(){
-	system("./printStats.sh > stats.txt");
+	system("./printStats.sh");
 }
 
 
