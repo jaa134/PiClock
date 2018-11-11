@@ -39,7 +39,8 @@ SOURCES += \
     settingsPage/alarmlistitem.cpp \
     settingsPage/draglistwidget.cpp \
     alarmPage/alarmpage.cpp \
-    alarmPage/mathgame.cpp
+    alarmPage/mathgame.cpp \
+    alarmPage/tictactoegame.cpp
 
 HEADERS += \
     piclockapp.h \
@@ -55,7 +56,8 @@ HEADERS += \
     settingsPage/alarmlistitem.h \
     settingsPage/draglistwidget.h \
     alarmPage/alarmpage.h \
-    alarmPage/mathgame.h
+    alarmPage/mathgame.h \
+    alarmPage/tictactoegame.h
 
 FORMS += \
     piclockapp.ui \
@@ -66,7 +68,8 @@ FORMS += \
     mainPage/holidaycountdownwidget.ui \
     mainPage/systemstatisticswidget.ui \
     settingsPage/alarmlistitem.ui \
-    alarmPage/mathgame.ui
+    alarmPage/mathgame.ui \
+    alarmPage/tictactoegame.ui
 
 RESOURCES += \
     resources.qrc

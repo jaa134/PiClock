@@ -10,6 +10,7 @@ void DatabaseManager::initDb() {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", CONNECTION);
     QString dbPath = QCoreApplication::applicationDirPath() + "/../../db/PiClock.db";
     db.setDatabaseName(dbPath);
+    db.open();
 
     if (db.tables().isEmpty())
         createDb();
