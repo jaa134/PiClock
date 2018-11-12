@@ -49,7 +49,7 @@ Quotes::Quotes(QObject *parent) : QObject(parent){
                     quoteList.append(qu);
                 }
 
-            this -> printQuotes();
+                this -> printQuotes();
             }
 
         );
@@ -89,7 +89,6 @@ void Quotes::printQuotes(){
 		//		- Author
         cout << "\"" << testquote.quote.toStdString() << "\"" << endl;
         cout << "\t- " << testquote.author.toStdString() << endl << endl;
-        cin.ignore();
    }
 }
 

@@ -13,3 +13,5 @@ Prototypes/Widgets/sysUsage/test
 **.db
 src/Build/**
 **.pro.user
+**build*Qt**
+

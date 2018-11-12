@@ -1,11 +1,8 @@
-QT -= gui
 QT += network
 QT += gui
-QT += core testlib multimedia
 
-CONFIG += c++11 console testcase
+CONFIG += c++11 console
 CONFIG -= app_bundle
-TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -21,13 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         quotes.cpp \
-    quoteunittest.cpp
+
+HEADERS += \
+    quotes.h \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-HEADERS += \
-    quotes.h \
-    quoteunittest.h
