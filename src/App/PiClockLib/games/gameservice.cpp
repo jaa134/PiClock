@@ -4,9 +4,9 @@ GameService::~GameService()
 { }
 
 bool GameService::isWinner() {
-    return currentPoints == pointsToWin;
+    return currentPoints >= pointsToWin;
 }
 
 int GameService::numPointsNeeded() {
-    return pointsToWin - currentPoints;
+    return std::max(pointsToWin - currentPoints, 0);
 }

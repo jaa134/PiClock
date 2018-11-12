@@ -28,8 +28,9 @@ SOURCES += \
         managers/widgetmanager.cpp \
         managers/databasemanager.cpp \
         models/alarm.cpp \
+        games/gameservice.cpp \
         games/mathgameservice.cpp \
-    games/gameservice.cpp
+        games/tictactoegameservice.cpp
 
 HEADERS += \
         piclocklib.h \
@@ -39,8 +40,9 @@ HEADERS += \
         managers/databasemanager.h \
         models/alarm.h \
         models/game.h \
+        games/gameservice.h \
         games/mathgameservice.h \
-    games/gameservice.h
+        games/tictactoegameservice.h
 
 unix {
     target.path = /usr/lib

@@ -9,18 +9,18 @@ class Game : public QObject
 
 public:
     enum Type {
-        TicTacToe,
-        Concentration,
         Math,
-        Trivia
+        TicTacToe,
+        //Concentration,
+        //Trivia
     };
     Q_ENUM(Type)
     static QString gameTypeValue(Type t) {
         switch (t) {
-            case Type::TicTacToe: return "Tic Tac Toe";
-            case Type::Concentration: return "Concentration";
             case Type::Math: return "Math";
-            case Type::Trivia: return "Trivia";
+            case Type::TicTacToe: return "Tic Tac Toe";
+            //case Type::Concentration: return "Concentration";
+            //case Type::Trivia: return "Trivia";
         }
         return "";
     }

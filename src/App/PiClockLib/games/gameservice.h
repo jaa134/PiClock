@@ -2,9 +2,11 @@
 #define GAMESERVICE_H
 
 #include "models/game.h"
+#include "QObject"
 
-class GameService
+class GameService : public QObject
 {
+Q_OBJECT
 
 public:
     virtual ~GameService();

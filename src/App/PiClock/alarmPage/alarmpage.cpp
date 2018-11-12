@@ -1,8 +1,10 @@
 #include "alarmpage.h"
 #include "mathgame.h"
+#include "tictactoegame.h"
 #include "QThread"
 
 #define MATH 0
+#define TICTACTOE 1
 
 AlarmPage::AlarmPage(Ui::PiClockApp *ui) {
     this->ui = ui;
@@ -19,10 +21,15 @@ void AlarmPage::init() {
     alarm_manager->init();
     emit chunkLoaded();
 
-    ui->games->addWidget(new MathGame());
-    MathGame *mathGame = qobject_cast<MathGame *>(ui->games->widget(MATH));
+    MathGame *mathGame = new MathGame();
+    ui->games->addWidget(mathGame);
     connect(mathGame, &MathGame::gameOver, this, &AlarmPage::onGameOver);
     connect(mathGame, &MathGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
+
+    TicTacToeGame *tictactoeGame = new TicTacToeGame();
+    ui->games->addWidget(tictactoeGame);
+    connect(tictactoeGame, &TicTacToeGame::gameOver, this, &AlarmPage::onGameOver);
+    connect(tictactoeGame, &TicTacToeGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
     emit chunkLoaded();
 }
 
@@ -43,13 +50,10 @@ void AlarmPage::navToAlarm(Game::Type type, Game::Difficulty difficulty) {
             game->init(difficulty);
             break;
         }
-        case Game::Type::Concentration: {
-            break;
-        }
         case Game::Type::TicTacToe: {
-            break;
-        }
-        case Game::Type::Trivia: {
+            ui->games->setCurrentIndex(TICTACTOE);
+            TicTacToeGame *game = qobject_cast<TicTacToeGame *>(ui->games->currentWidget());
+            game->init(difficulty);
             break;
         }
     }

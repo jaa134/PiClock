@@ -12,3 +12,4 @@ Prototypes/Widgets/sysUsage/test
 **.DS_Store
 **.db
 src/Build/**
+**.pro.user
