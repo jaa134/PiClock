@@ -1,7 +1,8 @@
 TEMPLATE = subdirs  
 SUBDIRS += PiClock \ 
     PiClockUnitTests \
-    PiClockLib
+    PiClockLib \
+    PiClockGUITests/PiClockGUITests
 
 PiClock.depends = PiClockLib
 PiClockUnitTests.depends = PiClockLib
