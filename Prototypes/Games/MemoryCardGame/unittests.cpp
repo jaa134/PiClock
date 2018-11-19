@@ -31,8 +31,12 @@ TEST_CASE("Flip Cards", "[FlipCards]") {
     MemoryCard m = MemoryCard();
     m.createBoard();
     m.flipCards(1,0,1,1);
-    REQUIRE(m.cardstatus[1][0] == true);
-    REQUIRE(m.cardstatus[1][1] == true);
+    bool card1 = m.cardstatus[1][0];
+    bool card2 = m.cardstatus[1][1];
+    printf("%d\n",card1);
+    printf("%d\n", card2);
+    REQUIRE(card1);
+    REQUIRE(card2);
 }
 
 /*

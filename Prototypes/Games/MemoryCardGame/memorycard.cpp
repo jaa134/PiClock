@@ -10,7 +10,6 @@ using namespace std;
  */
 MemoryCard::MemoryCard() {
     gameOver = false;   // variable to see if game is over
-    bool cardstatus[4][2];  // variable to check the card status of each card
 }
 
 /*
