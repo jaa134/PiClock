@@ -6,6 +6,7 @@
 
 class Alarm
 {
+    friend class TestStub;
 
 public:
 

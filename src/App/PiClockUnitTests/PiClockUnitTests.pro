@@ -1,8 +1,8 @@
-QT += core testlib multimedia
+QT += core testlib multimedia sql
 QT -= gui
 TARGET = PiClockUnitTests
 
-CONFIG += c++11 console testcase
+CONFIG += c++11 console testcase gcov
 CONFIG -= app_bundle
 TEMPLATE = app
 
@@ -19,11 +19,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    applicationtest.cpp \
     managers/settingsmanagertests.cpp \
     managers/alarmmanagertests.cpp \
     managers/widgetmanagertests.cpp \
-    models/alarmtests.cpp
+    managers/databasemanagertests.cpp \
+    models/alarmtests.cpp \
+    games/mathgameservicetests.cpp \
+    games/tictactoegameservicetests.cpp
 
 INCLUDEPATH += $$PWD/../PiClockLib
 LIBS += -L$$OUT_PWD/../PiClockLib -lPiClockLib
@@ -34,8 +36,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    applicationtest.h \
     managers/settingsmanagertests.h \
     managers/alarmmanagertests.h \
     managers/widgetmanagertests.h \
-    models/alarmtests.h
+    managers/databasemanagertests.h \
+    models/alarmtests.h \
+    games/mathgameservicetests.h \
+    games/tictactoegameservicetests.h

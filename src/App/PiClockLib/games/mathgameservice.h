@@ -7,6 +7,7 @@
 
 class MathGameService : public GameService
 {
+    friend class TestStub;
 
 public:
     struct Answer {

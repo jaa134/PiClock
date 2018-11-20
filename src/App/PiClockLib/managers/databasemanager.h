@@ -10,6 +10,8 @@ class DatabaseManager : public QObject
 {
     Q_OBJECT
 
+    friend class TestStub;
+
 public:
     static void initDb();
     static void addAlarm(Alarm);

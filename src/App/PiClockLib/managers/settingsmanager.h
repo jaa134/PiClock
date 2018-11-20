@@ -11,6 +11,7 @@
 
 class SettingsManager
 {
+    friend class TestStub;
 
 public:
     static void reset();

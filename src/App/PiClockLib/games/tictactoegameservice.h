@@ -8,6 +8,7 @@
 
 class TicTacToeGameService : public GameService
 {
+    friend class TestStub;
 
 public:
     enum MoveOutcome {

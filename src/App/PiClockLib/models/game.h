@@ -7,6 +7,8 @@ class Game : public QObject
 {
     Q_OBJECT
 
+    friend class TestStub;
+
 public:
     enum Type {
         Math,

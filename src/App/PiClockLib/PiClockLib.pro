@@ -8,7 +8,7 @@ QT -= gui
 
 TARGET = PiClockLib
 TEMPLATE = lib
-CONFIG += staticlib
+CONFIG += staticlib gcov
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -42,7 +42,8 @@ HEADERS += \
         models/game.h \
         games/gameservice.h \
         games/mathgameservice.h \
-        games/tictactoegameservice.h
+        games/tictactoegameservice.h \
+    teststub.h
 
 unix {
     target.path = /usr/lib

@@ -6,7 +6,7 @@
 
 class GameService : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     virtual ~GameService();

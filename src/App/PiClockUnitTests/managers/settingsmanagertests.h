@@ -1,11 +1,15 @@
 #ifndef SETTINGSMANAGERTESTS_H
 #define SETTINGSMANAGERTESTS_H
 
+#include "teststub.h"
 #include "QObject"
 
-class SettingsManagerTests : public QObject
+class SettingsManagerTests : public TestStub
 {
     Q_OBJECT
+
+public:
+    virtual ~SettingsManagerTests() {}
 
 private slots:
     void init();

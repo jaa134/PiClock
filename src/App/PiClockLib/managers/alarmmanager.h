@@ -11,6 +11,8 @@ class AlarmManager : public QObject
 {
     Q_OBJECT
 
+    friend class TestStub;
+
 public:
     AlarmManager();
     void init();
