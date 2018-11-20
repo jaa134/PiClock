@@ -4,7 +4,6 @@
 #include "gameservice.h"
 #include "models/game.h"
 #include "QList"
-#include "QObject"
 
 class TicTacToeGameService : public GameService
 {

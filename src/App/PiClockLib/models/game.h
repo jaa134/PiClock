@@ -13,7 +13,7 @@ public:
     enum Type {
         Math,
         TicTacToe,
-        //Concentration,
+        Memory,
         //Trivia
     };
     Q_ENUM(Type)
@@ -21,7 +21,7 @@ public:
         switch (t) {
             case Type::Math: return "Math";
             case Type::TicTacToe: return "Tic Tac Toe";
-            //case Type::Concentration: return "Concentration";
+            case Type::Memory: return "Memory";
             //case Type::Trivia: return "Trivia";
         }
         return "";

@@ -30,7 +30,8 @@ SOURCES += \
         models/alarm.cpp \
         games/gameservice.cpp \
         games/mathgameservice.cpp \
-        games/tictactoegameservice.cpp
+        games/tictactoegameservice.cpp \
+    games/memorygameservice.cpp
 
 HEADERS += \
         piclocklib.h \
@@ -43,7 +44,8 @@ HEADERS += \
         games/gameservice.h \
         games/mathgameservice.h \
         games/tictactoegameservice.h \
-    teststub.h
+    teststub.h \
+    games/memorygameservice.h
 
 unix {
     target.path = /usr/lib

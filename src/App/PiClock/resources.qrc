@@ -3,6 +3,7 @@
     <file>images/background.png</file>
     <file>images/settings.png</file>
     <file>images/back.png</file>
+    <file>images/memory-logo.png</file>
     <file>sounds/alarm.wav</file>
     </qresource>
 </RCC>
