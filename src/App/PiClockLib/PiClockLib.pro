@@ -3,7 +3,7 @@
 # Project created by QtCreator 2018-10-30T16:05:37
 #
 #-------------------------------------------------
-QT += core sql multimedia
+QT += core sql multimedia network
 QT -= gui
 
 TARGET = PiClockLib
@@ -31,7 +31,14 @@ SOURCES += \
         games/gameservice.cpp \
         games/mathgameservice.cpp \
         games/tictactoegameservice.cpp \
-    games/memorygameservice.cpp
+    games/memorygameservice.cpp \
+    games/triviagameservice.cpp \
+    widgets/worldclockwidgetservice.cpp \
+    widgets/forecastwidgetservice.cpp \
+    widgets/holidaycountdownwidgetservice.cpp \
+    widgets/quoteswidgetservice.cpp \
+    widgets/systemstatisticswidgetservice.cpp \
+    widgets/weatherwidgetservice.cpp
 
 HEADERS += \
         piclocklib.h \
@@ -45,7 +52,15 @@ HEADERS += \
         games/mathgameservice.h \
         games/tictactoegameservice.h \
     teststub.h \
-    games/memorygameservice.h
+    games/memorygameservice.h \
+    games/triviagameservice.h \
+    widgets/worldclockwidgetservice.h \
+    widgets/forecastwidgetservice.h \
+    widgets/holidaycountdownwidgetservice.h \
+    widgets/quoteswidgetservice.h \
+    widgets/systemstatisticswidgetservice.h \
+    widgets/weatherwidgetservice.h \
+    widgets/widgetservice.h
 
 unix {
     target.path = /usr/lib

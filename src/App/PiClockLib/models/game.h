@@ -14,7 +14,7 @@ public:
         Math,
         TicTacToe,
         Memory,
-        //Trivia
+        Trivia
     };
     Q_ENUM(Type)
     static QString gameTypeValue(Type t) {
@@ -22,7 +22,7 @@ public:
             case Type::Math: return "Math";
             case Type::TicTacToe: return "Tic Tac Toe";
             case Type::Memory: return "Memory";
-            //case Type::Trivia: return "Trivia";
+            case Type::Trivia: return "Trivia";
         }
         return "";
     }

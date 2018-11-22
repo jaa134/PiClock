@@ -2,11 +2,13 @@
 #include "mathgame.h"
 #include "tictactoegame.h"
 #include "memorygame.h"
+#include "triviagame.h"
 #include "QThread"
 
 #define MATH 0
 #define TICTACTOE 1
 #define MEMORY 2
+#define TRIVIA 3
 
 AlarmPage::AlarmPage(Ui::PiClockApp *ui) {
     this->ui = ui;
@@ -37,6 +39,11 @@ void AlarmPage::init() {
     ui->games->addWidget(memoryGame);
     connect(memoryGame, &MemoryGame::gameOver, this, &AlarmPage::onGameOver);
     connect(memoryGame, &MemoryGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
+
+    TriviaGame *triviaGame = new TriviaGame();
+    ui->games->addWidget(triviaGame);
+    connect(triviaGame, &TriviaGame::gameOver, this, &AlarmPage::onGameOver);
+    connect(triviaGame, &TriviaGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
     emit chunkLoaded();
 }
 
@@ -66,6 +73,12 @@ void AlarmPage::navToAlarm(Game::Type type, Game::Difficulty difficulty) {
         case Game::Type::Memory: {
             ui->games->setCurrentIndex(MEMORY);
             MemoryGame *game = qobject_cast<MemoryGame *>(ui->games->currentWidget());
+            game->init(difficulty);
+            break;
+        }
+        case Game::Type::Trivia: {
+            ui->games->setCurrentIndex(TRIVIA);
+            TriviaGame *game = qobject_cast<TriviaGame *>(ui->games->currentWidget());
             game->init(difficulty);
             break;
         }

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui sql multimedia
+QT += core gui sql multimedia network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,7 +41,8 @@ SOURCES += \
     alarmPage/alarmpage.cpp \
     alarmPage/mathgame.cpp \
     alarmPage/tictactoegame.cpp \
-    alarmPage/memorygame.cpp
+    alarmPage/memorygame.cpp \
+    alarmPage/triviagame.cpp
 
 HEADERS += \
     piclockapp.h \
@@ -59,7 +60,8 @@ HEADERS += \
     alarmPage/alarmpage.h \
     alarmPage/mathgame.h \
     alarmPage/tictactoegame.h \
-    alarmPage/memorygame.h
+    alarmPage/memorygame.h \
+    alarmPage/triviagame.h
 
 FORMS += \
     piclockapp.ui \
@@ -72,7 +74,8 @@ FORMS += \
     settingsPage/alarmlistitem.ui \
     alarmPage/mathgame.ui \
     alarmPage/tictactoegame.ui \
-    alarmPage/memorygame.ui
+    alarmPage/memorygame.ui \
+    alarmPage/triviagame.ui
 
 RESOURCES += \
     resources.qrc

@@ -141,7 +141,9 @@ void MemoryGame::onPlayerMove() {
                 return;
             }
         }
-        timer->start();
+        else {
+            timer->start();
+        }
     }
 }
 
@@ -158,8 +160,7 @@ bool MemoryGame::selectCard(int row, int col, QLabel *cardUI) {
     cardUI->setStyleSheet("background-color: " + card->colorCode + ";"
                           "border-radius: 10px;"
                           "margin: 3px;"
-                          "background-image: none;"
-                        );
+                          "background-image: none;");
     return true;
 }
 
@@ -201,8 +202,7 @@ void MemoryGame::resetCard(QLabel *cardUI) {
                           "margin: 3px;"
                           "background-image: url(:/images/memory-logo.png);"
                           "background-repeat: no-repeat;"
-                          "background-position: center;"
-                        );
+                          "background-position: center;");
 }
 
 void MemoryGame::resetGameboardForNextGame() {

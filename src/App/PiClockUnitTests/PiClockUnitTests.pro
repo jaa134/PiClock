@@ -1,4 +1,4 @@
-QT += core testlib multimedia sql
+QT += core testlib multimedia sql network
 QT -= gui
 TARGET = PiClockUnitTests
 
