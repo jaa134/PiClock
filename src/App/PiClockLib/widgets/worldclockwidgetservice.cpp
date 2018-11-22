@@ -22,6 +22,7 @@ WorldClockWidgetService::WorldClockWidgetService() {
 }
 
 void WorldClockWidgetService::init() {
+    update();
     updateTimer.start();
 }
 

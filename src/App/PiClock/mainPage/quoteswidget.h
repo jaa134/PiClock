@@ -1,7 +1,9 @@
 #ifndef QUOTESWIDGET_H
 #define QUOTESWIDGET_H
 
-#include <QWidget>
+#include "widgets/quoteswidgetservice.h"
+#include "QWidget"
+#include "QThread"
 
 namespace Ui {
 class QuotesWidget;
@@ -17,6 +19,11 @@ public:
 
 private:
     Ui::QuotesWidget *ui;
+    QuotesWidgetService *service;
+    QThread serviceThread;
+
+private slots:
+    void display();
 };
 
 #endif // QUOTESWIDGET_H

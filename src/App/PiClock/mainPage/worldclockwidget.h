@@ -4,7 +4,6 @@
 #include "widgets/worldclockwidgetservice.h"
 #include "QWidget"
 #include "QThread"
-#include "QTimer"
 
 namespace Ui {
 class WorldClockWidget;
