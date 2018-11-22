@@ -1,7 +1,10 @@
 #ifndef WORLDCLOCKWIDGET_H
 #define WORLDCLOCKWIDGET_H
 
-#include <QWidget>
+#include "widgets/worldclockwidgetservice.h"
+#include "QWidget"
+#include "QThread"
+#include "QTimer"
 
 namespace Ui {
 class WorldClockWidget;
@@ -17,6 +20,11 @@ public:
 
 private:
     Ui::WorldClockWidget *ui;
+    WorldClockWidgetService *service;
+    QThread serviceThread;
+
+private slots:
+    void display();
 };
 
 #endif // WORLDCLOCKWIDGET_H

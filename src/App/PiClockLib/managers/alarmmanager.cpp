@@ -35,7 +35,7 @@ void AlarmManager::init() {
     //add a day if that time has already passed
     if (mSecs < 0)
         mSecs += QDateTime::currentDateTime().msecsTo(QDateTime::currentDateTime().addDays(1));
-    start_timer->setInterval(5000);
+    start_timer->setInterval(mSecs);
     start_timer->start();
 }
 
