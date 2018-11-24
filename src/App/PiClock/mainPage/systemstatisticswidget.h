@@ -1,7 +1,10 @@
 #ifndef SYSTEMSTATISTICSWIDGET_H
 #define SYSTEMSTATISTICSWIDGET_H
 
-#include <QWidget>
+#include "widgets/systemstatisticswidgetservice.h"
+#include "QWidget"
+#include "QThread"
+#include "QProgressBar"
 
 namespace Ui {
 class SystemStatisticsWidget;
@@ -17,6 +20,12 @@ public:
 
 private:
     Ui::SystemStatisticsWidget *ui;
+    SystemStatisticsWidgetService *service;
+    QThread serviceThread;
+    void setWarningColor(QProgressBar *);
+
+private slots:
+    void display();
 };
 
 #endif // SYSTEMSTATISTICSWIDGET_H

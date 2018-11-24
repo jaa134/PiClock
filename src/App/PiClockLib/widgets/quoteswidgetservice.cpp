@@ -4,6 +4,8 @@ QuotesWidgetService::QuotesWidgetService() {
     quote.content = "Content";
     quote.author = "Author";
 
+    manager = nullptr;
+
     connect(&updateTimer, &QTimer::timeout, this, &QuotesWidgetService::update);
     updateTimer.setInterval(SettingsManager::widgetTransitionDuration());
 }
@@ -27,15 +29,16 @@ void QuotesWidgetService::update() {
 }
 
 bool QuotesWidgetService::isValidQuote() {
-    int maxContentLength = 100;
+    int maxContentLength = 80;
     int maxAuthorLength = 25;
     return quote.content.length() <= maxContentLength
             && quote.author.length() <= maxAuthorLength
-            && quote.content.isEmpty()
-            && quote.author.isEmpty();
+            && !quote.content.isEmpty()
+            && !quote.author.isEmpty();
 }
 
 void QuotesWidgetService::getQuotes() {
+    delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &QuotesWidgetService::generateQuotes);
     request.setUrl(QUrl("https://talaikis.com/api/quotes/"));

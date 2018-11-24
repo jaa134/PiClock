@@ -22,6 +22,12 @@
      <height>35</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;</string>
+   </property>
+   <property name="minimum">
+    <number>0</number>
+   </property>
    <property name="value">
     <number>0</number>
    </property>
@@ -38,6 +44,12 @@
      <height>35</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;</string>
+   </property>
+   <property name="minimum">
+    <number>0</number>
+   </property>
    <property name="value">
     <number>0</number>
    </property>
@@ -45,7 +57,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QProgressBar" name="discBar">
+  <widget class="QProgressBar" name="networkBar">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -53,6 +65,12 @@
      <width>550</width>
      <height>35</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;</string>
+   </property>
+   <property name="minimum">
+    <number>0</number>
    </property>
    <property name="value">
     <number>0</number>
@@ -82,7 +100,7 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="ramLabel">
+  <widget class="QLabel" name="discLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -103,7 +121,7 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="discLabel">
+  <widget class="QLabel" name="networkLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -124,7 +142,7 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QProgressBar" name="ramBar_2">
+  <widget class="QProgressBar" name="discBar">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -133,6 +151,12 @@
      <height>35</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;</string>
+   </property>
+   <property name="minimum">
+    <number>0</number>
+   </property>
    <property name="value">
     <number>0</number>
    </property>
@@ -140,7 +164,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="cpuLabel_2">
+  <widget class="QLabel" name="ramLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
