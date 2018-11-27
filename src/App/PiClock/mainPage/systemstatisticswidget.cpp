@@ -22,13 +22,14 @@ SystemStatisticsWidget::~SystemStatisticsWidget()
 }
 
 void SystemStatisticsWidget::display() {
-    ui->cpuBar->setValue(service->cpuUsage + 1);
+    int baseVal = 5;
+    ui->cpuBar->setValue(service->cpuUsage + baseVal);
     setWarningColor(ui->cpuBar);
-    ui->ramBar->setValue(service->memoryUsage + 1);
+    ui->ramBar->setValue(service->memoryUsage + baseVal);
     setWarningColor(ui->ramBar);
-    ui->discBar->setValue(service->discUsage + 1);
+    ui->discBar->setValue(service->discUsage + baseVal);
     setWarningColor(ui->discBar);
-    ui->networkBar->setValue(service->networkUsage + 1);
+    ui->networkBar->setValue(service->networkUsage + baseVal);
     setWarningColor(ui->networkBar);
     QApplication::processEvents();
 }

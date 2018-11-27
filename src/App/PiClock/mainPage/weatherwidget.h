@@ -1,7 +1,9 @@
 #ifndef WEATHERWIDGET_H
 #define WEATHERWIDGET_H
 
-#include <QWidget>
+#include "widgets/weatherwidgetservice.h"
+#include "QWidget"
+#include "QThread"
 
 namespace Ui {
 class WeatherWidget;
@@ -17,6 +19,11 @@ public:
 
 private:
     Ui::WeatherWidget *ui;
+    WeatherWidgetService *service;
+    QThread serviceThread;
+
+private slots:
+    void display();
 };
 
 #endif // WEATHERWIDGET_H

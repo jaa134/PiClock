@@ -5,5 +5,30 @@
     <file>images/back.png</file>
     <file>images/memory-logo.png</file>
     <file>sounds/alarm.wav</file>
+    <file>json/holidays.json</file>
+    <file>json/weather_conditions.json</file>
+    <file>images/weather/cloudy.svg</file>
+    <file>images/weather/cloudy-day-1.svg</file>
+    <file>images/weather/cloudy-day-2.svg</file>
+    <file>images/weather/cloudy-day-3.svg</file>
+    <file>images/weather/cloudy-night-1.svg</file>
+    <file>images/weather/cloudy-night-2.svg</file>
+    <file>images/weather/cloudy-night-3.svg</file>
+    <file>images/weather/day.svg</file>
+    <file>images/weather/night.svg</file>
+    <file>images/weather/rainy-1.svg</file>
+    <file>images/weather/rainy-2.svg</file>
+    <file>images/weather/rainy-3.svg</file>
+    <file>images/weather/rainy-4.svg</file>
+    <file>images/weather/rainy-5.svg</file>
+    <file>images/weather/rainy-6.svg</file>
+    <file>images/weather/rainy-7.svg</file>
+    <file>images/weather/snowy-1.svg</file>
+    <file>images/weather/snowy-2.svg</file>
+    <file>images/weather/snowy-3.svg</file>
+    <file>images/weather/snowy-4.svg</file>
+    <file>images/weather/snowy-5.svg</file>
+    <file>images/weather/snowy-6.svg</file>
+    <file>images/weather/thunder.svg</file>
     </qresource>
 </RCC>

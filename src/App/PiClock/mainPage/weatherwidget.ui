@@ -13,43 +13,33 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGraphicsView" name="weatherIcon">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>45</y>
-     <width>220</width>
-     <height>220</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="degreeValue">
    <property name="geometry">
     <rect>
      <x>275</x>
-     <y>40</y>
-     <width>220</width>
-     <height>220</height>
+     <y>109</y>
+     <width>211</width>
+     <height>161</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>200</pointsize>
+     <pointsize>150</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>#</string>
+    <string>55</string>
    </property>
    <property name="alignment">
-    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="tempRangeLabel">
+  <widget class="QLabel" name="precipitationLabel">
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>117</y>
-     <width>140</width>
+     <y>110</y>
+     <width>181</width>
      <height>30</height>
     </rect>
    </property>
@@ -61,14 +51,14 @@
     </font>
    </property>
    <property name="text">
-    <string>High / Low: </string>
+    <string>Pericipitation:</string>
    </property>
   </widget>
   <widget class="QLabel" name="humidityLabel">
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>168</y>
+     <y>143</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -88,7 +78,7 @@
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>218</y>
+     <y>176</y>
      <width>70</width>
      <height>30</height>
     </rect>
@@ -108,7 +98,7 @@
    <property name="geometry">
     <rect>
      <x>640</x>
-     <y>168</y>
+     <y>143</y>
      <width>130</width>
      <height>30</height>
     </rect>
@@ -121,14 +111,14 @@
     </font>
    </property>
    <property name="text">
-    <string>x%</string>
+    <string>0%</string>
    </property>
   </widget>
   <widget class="QLabel" name="windValue">
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>218</y>
+     <y>176</y>
      <width>170</width>
      <height>30</height>
     </rect>
@@ -147,15 +137,15 @@
   <widget class="QLabel" name="locationValue">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>70</y>
-     <width>270</width>
-     <height>30</height>
+     <x>275</x>
+     <y>20</y>
+     <width>505</width>
+     <height>60</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>20</pointsize>
+     <pointsize>38</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -164,12 +154,12 @@
     <string>LOCATION</string>
    </property>
   </widget>
-  <widget class="QLabel" name="tempRangeValue">
+  <widget class="QLabel" name="precipitationValue">
    <property name="geometry">
     <rect>
-     <x>660</x>
-     <y>117</y>
-     <width>100</width>
+     <x>689</x>
+     <y>110</y>
+     <width>81</width>
      <height>30</height>
     </rect>
    </property>
@@ -181,10 +171,124 @@
     </font>
    </property>
    <property name="text">
-    <string>00  00</string>
+    <string>0 in</string>
+   </property>
+  </widget>
+  <widget class="QSvgWidget" name="weatherIconContainer" native="true">
+   <property name="geometry">
+    <rect>
+     <x>-50</x>
+     <y>-30</y>
+     <width>375</width>
+     <height>375</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cloudCoverLabel">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>209</y>
+     <width>161</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Cloud Cover:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cloudCoverValue">
+   <property name="geometry">
+    <rect>
+     <x>669</x>
+     <y>209</y>
+     <width>101</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>0%</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="visibilityLabel">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>242</y>
+     <width>121</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Visibility:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="visibilityValue">
+   <property name="geometry">
+    <rect>
+     <x>629</x>
+     <y>242</y>
+     <width>141</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>0 mi</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>275</x>
+     <y>90</y>
+     <width>505</width>
+     <height>3</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff;</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QSvgWidget</class>
+   <extends>QWidget</extends>
+   <header>qsvgwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

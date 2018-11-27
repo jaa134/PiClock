@@ -1,7 +1,9 @@
 #ifndef HOLIDAYCOUNTDOWNWIDGET_H
 #define HOLIDAYCOUNTDOWNWIDGET_H
 
-#include <QWidget>
+#include "widgets/holidaycountdownwidgetservice.h"
+#include "QWidget"
+#include "QThread"
 
 namespace Ui {
 class HolidayCountdownWidget;
@@ -17,6 +19,11 @@ public:
 
 private:
     Ui::HolidayCountdownWidget *ui;
+    HolidayCountdownWidgetService *service;
+    QThread serviceThread;
+
+private slots:
+    void display();
 };
 
 #endif // HOLIDAYCOUNTDOWNWIDGET_H

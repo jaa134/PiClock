@@ -30,22 +30,22 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="start">
      <widget class="QLabel" name="logo">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>150</y>
+        <y>129</y>
         <width>800</width>
-        <height>100</height>
+        <height>121</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>Tlwg Typist</family>
-        <pointsize>90</pointsize>
+        <pointsize>120</pointsize>
        </font>
       </property>
       <property name="text">
@@ -58,11 +58,16 @@
      <widget class="QProgressBar" name="progressBar">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>270</y>
-        <width>700</width>
-        <height>25</height>
+        <x>30</x>
+        <y>265</y>
+        <width>740</width>
+        <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
       </property>
       <property name="value">
        <number>0</number>

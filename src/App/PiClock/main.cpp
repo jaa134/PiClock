@@ -1,6 +1,7 @@
 #include "piclockapp.h"
 #include "managers/databasemanager.h"
 #include "QApplication"
+#include "QScreen"
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,7 @@ int main(int argc, char *argv[])
     DatabaseManager::initDb();
 
     PiClockApp w;
+    w.move(QGuiApplication::primaryScreen()->geometry().center() - w.rect().center());
     w.show();
     w.init();
 

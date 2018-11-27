@@ -31,14 +31,14 @@ SOURCES += \
         games/gameservice.cpp \
         games/mathgameservice.cpp \
         games/tictactoegameservice.cpp \
-    games/memorygameservice.cpp \
-    games/triviagameservice.cpp \
-    widgets/worldclockwidgetservice.cpp \
-    widgets/forecastwidgetservice.cpp \
-    widgets/holidaycountdownwidgetservice.cpp \
-    widgets/quoteswidgetservice.cpp \
-    widgets/systemstatisticswidgetservice.cpp \
-    widgets/weatherwidgetservice.cpp
+        games/memorygameservice.cpp \
+        games/triviagameservice.cpp \
+        widgets/worldclockwidgetservice.cpp \
+        widgets/forecastwidgetservice.cpp \
+        widgets/holidaycountdownwidgetservice.cpp \
+        widgets/quoteswidgetservice.cpp \
+        widgets/systemstatisticswidgetservice.cpp \
+        widgets/weatherwidgetservice.cpp
 
 HEADERS += \
         piclocklib.h \
@@ -51,16 +51,16 @@ HEADERS += \
         games/gameservice.h \
         games/mathgameservice.h \
         games/tictactoegameservice.h \
-    teststub.h \
-    games/memorygameservice.h \
-    games/triviagameservice.h \
-    widgets/worldclockwidgetservice.h \
-    widgets/forecastwidgetservice.h \
-    widgets/holidaycountdownwidgetservice.h \
-    widgets/quoteswidgetservice.h \
-    widgets/systemstatisticswidgetservice.h \
-    widgets/weatherwidgetservice.h \
-    widgets/widgetservice.h
+        teststub.h \
+        games/memorygameservice.h \
+        games/triviagameservice.h \
+        widgets/worldclockwidgetservice.h \
+        widgets/forecastwidgetservice.h \
+        widgets/holidaycountdownwidgetservice.h \
+        widgets/quoteswidgetservice.h \
+        widgets/systemstatisticswidgetservice.h \
+        widgets/weatherwidgetservice.h \
+        widgets/widgetservice.h
 
 unix {
     target.path = /usr/lib

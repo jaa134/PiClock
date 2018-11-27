@@ -13,7 +13,6 @@
 #include "QJsonObject"
 #include "QJsonArray"
 #include "QTextDocument"
-#include "QEventLoop"
 
 class QuotesWidgetService : public WidgetService
 {
@@ -32,7 +31,6 @@ public:
 private:
     QNetworkAccessManager *manager;
     QNetworkRequest request;
-    QEventLoop replyLoop;
     QList<Quote> quotes;
     bool isValidQuote();
     void getQuotes();

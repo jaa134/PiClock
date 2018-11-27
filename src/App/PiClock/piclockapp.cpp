@@ -1,12 +1,15 @@
 #include "piclockapp.h"
 #include "ui_piclockapp.h"
 #include "QTimer"
+#include "QMenuBar"
 
 #define LOADITEMS 1
 
 PiClockApp::PiClockApp(QWidget *parent) : QMainWindow(parent), ui(new Ui::PiClockApp)
 {
     ui->setupUi(this);
+    this->menuBar()->hide();
+    this->setWindowFlag(Qt::FramelessWindowHint);
     mainPage = new MainPage(ui);
     settingsPage = new SettingsPage(ui);
     alarmPage = new AlarmPage(ui);
