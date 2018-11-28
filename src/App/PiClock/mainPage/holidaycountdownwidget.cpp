@@ -21,6 +21,8 @@ HolidayCountdownWidget::~HolidayCountdownWidget()
     serviceThread.wait();
 }
 
+#include "QDebug"
+
 void HolidayCountdownWidget::display() {
     QString numDaysUntil = QString::number(QDate::currentDate().daysTo(service->holiday.date));
     QString contentLeft = ""

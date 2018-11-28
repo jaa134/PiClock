@@ -30,19 +30,21 @@ public:
     static bool defaultIsWorldClockEnabled();
     static bool defaultIsHolidayCountdownEnabled();
     static bool defaultIsSystemStatsEnabled();
+    static bool defaultIsCommuteEnabled();
     static bool isWeatherEnabled();
     static bool isForecastEnabled();
     static bool isQuotesEnabled();
     static bool isWorldClockEnabled();
     static bool isHolidayCountdownEnabled();
     static bool isSystemStatsEnabled();
+    static bool isCommuteEnabled();
     static void setIsWeatherEnabled(bool);
     static void setIsForecastEnabled(bool);
     static void setIsQuotesEnabled(bool);
     static void setIsWorldClockEnabled(bool);
     static void setIsHolidayCountdownEnabled(bool);
     static void setIsSystemStatsEnabled(bool);
-
+    static void setIsCommuteEnabled(bool);
 };
 
 #endif // SETTINGSMANAGER_H

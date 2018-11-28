@@ -5,6 +5,7 @@
 #include "worldclockwidget.h"
 #include "holidaycountdownwidget.h"
 #include "systemstatisticswidget.h"
+#include "commutewidget.h"
 
 MainPage::MainPage(Ui::PiClockApp *ui)
 {
@@ -48,6 +49,7 @@ void MainPage::init() {
     ui->widgetSlideshow->addWidget(new WorldClockWidget());
     ui->widgetSlideshow->addWidget(new HolidayCountdownWidget());
     ui->widgetSlideshow->addWidget(new SystemStatisticsWidget());
+    ui->widgetSlideshow->addWidget(new CommuteWidget());
     widget_manager->moveToThread(&widget_thread);
     connect(this, SIGNAL(stopWidgetManager()), widget_manager, SLOT(stop()));
     connect(this, SIGNAL(startWidgetManager()), widget_manager, SLOT(start()));

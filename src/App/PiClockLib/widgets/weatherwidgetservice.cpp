@@ -38,7 +38,7 @@ void WeatherWidgetService::generateWeather(QNetworkReply *reply) {
 
     weather.location = locationData["name"].toString();
     weather.region = locationData["region"].toString();
-    weather.currentTemp = QString::number(currentData["temp_f"].toDouble());
+    weather.currentTemp = QString::number((int)currentData["temp_f"].toDouble());
     weather.windSpeed = QString::number(currentData["wind_mph"].toDouble());
     weather.windDirection = currentData["wind_dir"].toString();
     weather.humidity = QString::number(currentData["humidity"].toDouble());

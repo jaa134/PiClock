@@ -147,8 +147,9 @@ void SettingsPage::loadSettings() {
     ui->forecastCheckbox->setChecked(SettingsManager::isForecastEnabled());
     ui->quotesCheckbox->setChecked(SettingsManager::isQuotesEnabled());
     ui->wclockCheckbox->setChecked(SettingsManager::isWorldClockEnabled());
-    ui->holidaysCheckbox->setChecked(SettingsManager::isHolidayCountdownEnabled());
+    ui->holidayCountdownCheckbox->setChecked(SettingsManager::isHolidayCountdownEnabled());
     ui->sysstatsCheckbox->setChecked(SettingsManager::isSystemStatsEnabled());
+    ui->commuteCheckbox->setChecked(SettingsManager::isCommuteEnabled());
 }
 
 void SettingsPage::navToMain() {
@@ -184,8 +185,9 @@ void SettingsPage::save() {
     SettingsManager::setIsForecastEnabled(ui->forecastCheckbox->isChecked());
     SettingsManager::setIsQuotesEnabled(ui->quotesCheckbox->isChecked());
     SettingsManager::setIsWorldClockEnabled(ui->wclockCheckbox->isChecked());
-    SettingsManager::setIsHolidayCountdownEnabled(ui->holidaysCheckbox->isChecked());
+    SettingsManager::setIsHolidayCountdownEnabled(ui->holidayCountdownCheckbox->isChecked());
     SettingsManager::setIsSystemStatsEnabled(ui->sysstatsCheckbox->isChecked());
+    SettingsManager::setIsCommuteEnabled(ui->commuteCheckbox->isChecked());
 
     emit settingsSaved();
     setPageEnabled(true);

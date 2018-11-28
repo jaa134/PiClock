@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="start">
      <widget class="QLabel" name="logo">
@@ -225,7 +225,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -524,7 +524,7 @@
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>175</y>
+          <y>142</y>
           <width>200</width>
           <height>23</height>
          </rect>
@@ -535,14 +535,14 @@
          </font>
         </property>
         <property name="text">
-         <string> World Clocks</string>
+         <string/>
         </property>
        </widget>
        <widget class="QCheckBox" name="forecastCheckbox">
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>95</y>
+          <y>82</y>
           <width>200</width>
           <height>23</height>
          </rect>
@@ -553,7 +553,7 @@
          </font>
         </property>
         <property name="text">
-         <string> Forecast</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="enabledLabel">
@@ -574,12 +574,12 @@
          <string>Is Enabled?</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="holidaysCheckbox">
+       <widget class="QCheckBox" name="worldClocksCheckbox">
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>215</y>
-          <width>200</width>
+          <y>142</y>
+          <width>211</width>
           <height>23</height>
          </rect>
         </property>
@@ -589,14 +589,14 @@
          </font>
         </property>
         <property name="text">
-         <string> Holiday Countdown</string>
+         <string/>
         </property>
        </widget>
-       <widget class="QCheckBox" name="sysstatsCheckbox">
+       <widget class="QCheckBox" name="holidayCountdownCheckbox">
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>255</y>
+          <y>172</y>
           <width>200</width>
           <height>23</height>
          </rect>
@@ -607,14 +607,14 @@
          </font>
         </property>
         <property name="text">
-         <string> System Usage</string>
+         <string/>
         </property>
        </widget>
        <widget class="QCheckBox" name="weatherCheckbox">
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>55</y>
+          <y>52</y>
           <width>200</width>
           <height>23</height>
          </rect>
@@ -625,7 +625,7 @@
          </font>
         </property>
         <property name="text">
-         <string> Weather</string>
+         <string/>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -635,7 +635,7 @@
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>135</y>
+          <y>112</y>
           <width>200</width>
           <height>23</height>
          </rect>
@@ -646,7 +646,7 @@
          </font>
         </property>
         <property name="text">
-         <string> Quotes</string>
+         <string/>
         </property>
        </widget>
        <widget class="Line" name="line">
@@ -655,7 +655,7 @@
           <x>15</x>
           <y>46</y>
           <width>20</width>
-          <height>220</height>
+          <height>197</height>
          </rect>
         </property>
         <property name="orientation">
@@ -666,7 +666,7 @@
         <property name="geometry">
          <rect>
           <x>25</x>
-          <y>65</y>
+          <y>62</y>
           <width>25</width>
           <height>3</height>
          </rect>
@@ -679,7 +679,7 @@
         <property name="geometry">
          <rect>
           <x>25</x>
-          <y>105</y>
+          <y>92</y>
           <width>25</width>
           <height>3</height>
          </rect>
@@ -692,7 +692,7 @@
         <property name="geometry">
          <rect>
           <x>25</x>
-          <y>145</y>
+          <y>122</y>
           <width>25</width>
           <height>3</height>
          </rect>
@@ -705,7 +705,7 @@
         <property name="geometry">
          <rect>
           <x>25</x>
-          <y>185</y>
+          <y>152</y>
           <width>25</width>
           <height>3</height>
          </rect>
@@ -718,7 +718,7 @@
         <property name="geometry">
          <rect>
           <x>25</x>
-          <y>225</y>
+          <y>182</y>
           <width>25</width>
           <height>3</height>
          </rect>
@@ -731,13 +731,153 @@
         <property name="geometry">
          <rect>
           <x>25</x>
-          <y>265</y>
+          <y>212</y>
           <width>25</width>
           <height>3</height>
          </rect>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_8">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>242</y>
+          <width>25</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>50</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Weather</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>80</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Forecast</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>110</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Quotes</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>140</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>World Clocks</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>170</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Holiday Countdown</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>200</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>System Usage</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>230</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Commute</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="sysstatsCheckbox">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>202</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="commuteCheckbox">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>232</y>
+          <width>200</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>

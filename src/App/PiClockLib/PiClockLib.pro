@@ -38,7 +38,8 @@ SOURCES += \
         widgets/holidaycountdownwidgetservice.cpp \
         widgets/quoteswidgetservice.cpp \
         widgets/systemstatisticswidgetservice.cpp \
-        widgets/weatherwidgetservice.cpp
+        widgets/weatherwidgetservice.cpp \
+    widgets/commutewidgetservice.cpp
 
 HEADERS += \
         piclocklib.h \
@@ -60,7 +61,8 @@ HEADERS += \
         widgets/quoteswidgetservice.h \
         widgets/systemstatisticswidgetservice.h \
         widgets/weatherwidgetservice.h \
-        widgets/widgetservice.h
+        widgets/widgetservice.h \
+    widgets/commutewidgetservice.h
 
 unix {
     target.path = /usr/lib

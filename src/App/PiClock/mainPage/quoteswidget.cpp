@@ -22,6 +22,6 @@ QuotesWidget::~QuotesWidget()
 }
 
 void QuotesWidget::display() {
-    ui->text->setHtml("<p align=\"left\"><span>" + service->quote.content + "</span></p>"
+    ui->text->setHtml("<p align=\"center\"><span>" + service->quote.content + "</span></p>"
                     + "<p align=\"center\" style=\"font-size: 35px;\"><span><strong>" + service->quote.author + "</strong></span></p>");
 }

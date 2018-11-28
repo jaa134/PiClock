@@ -16,6 +16,7 @@
 #define WCLOCK_KEY "wclock"
 #define HOLIDAYS_KEY "holidays"
 #define SYSSTATS_KEY "sysstats"
+#define COMMUTE_KEY "commute"
 
 void SettingsManager::reset() {
     QSettings settings(COMPANY, PRODUCT);
@@ -85,6 +86,10 @@ bool SettingsManager::defaultIsSystemStatsEnabled() {
     return true;
 }
 
+bool SettingsManager::defaultIsCommuteEnabled() {
+    return true;
+}
+
 bool SettingsManager::isWeatherEnabled() {
     QSettings settings(COMPANY, PRODUCT);
     QString key("");
@@ -127,6 +132,13 @@ bool SettingsManager::isSystemStatsEnabled() {
     return settings.value(key, defaultIsSystemStatsEnabled()).toBool();
 }
 
+bool SettingsManager::isCommuteEnabled() {
+    QSettings settings(COMPANY, PRODUCT);
+    QString key("");
+    key += WIDGETS_KEY "/" COMMUTE_KEY "/isEnabled";
+    return settings.value(key, defaultIsCommuteEnabled()).toBool();
+}
+
 void SettingsManager::setIsWeatherEnabled(bool isEnabled) {
     QSettings settings(COMPANY, PRODUCT);
     QString key("");
@@ -166,5 +178,12 @@ void SettingsManager::setIsSystemStatsEnabled(bool isEnabled) {
     QSettings settings(COMPANY, PRODUCT);
     QString key("");
     key += WIDGETS_KEY "/" SYSSTATS_KEY "/isEnabled";
+    settings.setValue(key, isEnabled);
+}
+
+void SettingsManager::setIsCommuteEnabled(bool isEnabled) {
+    QSettings settings(COMPANY, PRODUCT);
+    QString key("");
+    key += WIDGETS_KEY "/" COMMUTE_KEY "/isEnabled";
     settings.setValue(key, isEnabled);
 }
