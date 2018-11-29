@@ -136,6 +136,7 @@ void MemoryGame::onPlayerMove() {
         if (outcome == MemoryGameService::MoveOutcome::Match) {
             emit pointsUpdated(service->numPointsNeeded());
             QCoreApplication::processEvents();
+            resetGameboardForNextTurn();
             if (service->isWinner()) {
                 emit gameOver();
                 return;

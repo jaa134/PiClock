@@ -76,11 +76,13 @@ int SystemStatisticsWidgetService::getDiscUsage() {
 int SystemStatisticsWidgetService::getNetworkUsage() {
     QFile f("/proc/net/dev");
     f.open(QIODevice::ReadOnly);
-    QTextStream ts(&f);
-    ts.readLine();
-    ts.readLine();
     QString deviceName;
-    ts >> deviceName;
+    QTextStream ts(&f);
+    do {
+        ts.readLine();
+        ts >> deviceName;
+    }
+    while (deviceName != "wlo1:");
     unsigned long totalBytesUsed;
     ts >> totalBytesUsed;
     f.close();
@@ -93,7 +95,6 @@ int SystemStatisticsWidgetService::getNetworkUsage() {
         int maxBandwidth = 1000000; //bps
         percent = (rate / 1000.0) / (maxBandwidth / 1000.0) * 100.0;
     }
-
     lastBytesUsed = totalBytesUsed;
 
     return percent;
