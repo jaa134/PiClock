@@ -9,6 +9,7 @@
 #define HOLIDAYS 5
 #define SYSSTATS 6
 #define COMMUTE 7
+#define NEWS 8
 
 WidgetManager::WidgetManager() {}
 
@@ -29,6 +30,8 @@ void WidgetManager::start() {
         enabled_widget_indexes.enqueue(SYSSTATS);
     if (SettingsManager::isCommuteEnabled())
         enabled_widget_indexes.enqueue(COMMUTE);
+    if (SettingsManager::isNewsEnabled())
+        enabled_widget_indexes.enqueue(NEWS);
 
     if (enabled_widget_indexes.size() == 0)
         enabled_widget_indexes.enqueue(NW);

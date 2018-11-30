@@ -43,7 +43,8 @@ SOURCES += \
     alarmPage/tictactoegame.cpp \
     alarmPage/memorygame.cpp \
     alarmPage/triviagame.cpp \
-    mainPage/commutewidget.cpp
+    mainPage/commutewidget.cpp \
+    mainPage/newswidget.cpp
 
 HEADERS += \
     piclockapp.h \
@@ -63,7 +64,8 @@ HEADERS += \
     alarmPage/tictactoegame.h \
     alarmPage/memorygame.h \
     alarmPage/triviagame.h \
-    mainPage/commutewidget.h
+    mainPage/commutewidget.h \
+    mainPage/newswidget.h
 
 FORMS += \
     piclockapp.ui \
@@ -78,7 +80,8 @@ FORMS += \
     alarmPage/tictactoegame.ui \
     alarmPage/memorygame.ui \
     alarmPage/triviagame.ui \
-    mainPage/commutewidget.ui
+    mainPage/commutewidget.ui \
+    mainPage/newswidget.ui
 
 RESOURCES += \
     resources.qrc

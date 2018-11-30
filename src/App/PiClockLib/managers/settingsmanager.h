@@ -31,6 +31,7 @@ public:
     static bool defaultIsHolidayCountdownEnabled();
     static bool defaultIsSystemStatsEnabled();
     static bool defaultIsCommuteEnabled();
+    static bool defaultIsNewsEnabled();
     static bool isWeatherEnabled();
     static bool isForecastEnabled();
     static bool isQuotesEnabled();
@@ -38,6 +39,7 @@ public:
     static bool isHolidayCountdownEnabled();
     static bool isSystemStatsEnabled();
     static bool isCommuteEnabled();
+    static bool isNewsEnabled();
     static void setIsWeatherEnabled(bool);
     static void setIsForecastEnabled(bool);
     static void setIsQuotesEnabled(bool);
@@ -45,6 +47,7 @@ public:
     static void setIsHolidayCountdownEnabled(bool);
     static void setIsSystemStatsEnabled(bool);
     static void setIsCommuteEnabled(bool);
+    static void setIsNewsEnabled(bool);
 };
 
 #endif // SETTINGSMANAGER_H

@@ -17,6 +17,7 @@
 #define HOLIDAYS_KEY "holidays"
 #define SYSSTATS_KEY "sysstats"
 #define COMMUTE_KEY "commute"
+#define NEWS_KEY "news"
 
 void SettingsManager::reset() {
     QSettings settings(COMPANY, PRODUCT);
@@ -90,6 +91,10 @@ bool SettingsManager::defaultIsCommuteEnabled() {
     return true;
 }
 
+bool SettingsManager::defaultIsNewsEnabled() {
+    return true;
+}
+
 bool SettingsManager::isWeatherEnabled() {
     QSettings settings(COMPANY, PRODUCT);
     QString key("");
@@ -139,6 +144,13 @@ bool SettingsManager::isCommuteEnabled() {
     return settings.value(key, defaultIsCommuteEnabled()).toBool();
 }
 
+bool SettingsManager::isNewsEnabled() {
+    QSettings settings(COMPANY, PRODUCT);
+    QString key("");
+    key += WIDGETS_KEY "/" NEWS_KEY "/isEnabled";
+    return settings.value(key, defaultIsNewsEnabled()).toBool();
+}
+
 void SettingsManager::setIsWeatherEnabled(bool isEnabled) {
     QSettings settings(COMPANY, PRODUCT);
     QString key("");
@@ -185,5 +197,12 @@ void SettingsManager::setIsCommuteEnabled(bool isEnabled) {
     QSettings settings(COMPANY, PRODUCT);
     QString key("");
     key += WIDGETS_KEY "/" COMMUTE_KEY "/isEnabled";
+    settings.setValue(key, isEnabled);
+}
+
+void SettingsManager::setIsNewsEnabled(bool isEnabled) {
+    QSettings settings(COMPANY, PRODUCT);
+    QString key("");
+    key += WIDGETS_KEY "/" NEWS_KEY "/isEnabled";
     settings.setValue(key, isEnabled);
 }
