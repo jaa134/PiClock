@@ -151,6 +151,15 @@ void SettingsPage::loadSettings() {
     ui->sysstatsCheckbox->setChecked(SettingsManager::isSystemStatsEnabled());
     ui->commuteCheckbox->setChecked(SettingsManager::isCommuteEnabled());
     ui->newsCheckbox->setChecked(SettingsManager::isNewsEnabled());
+
+    ui->weatherApiKey->setText(SettingsManager::weatherApiKey());
+    ui->weatherLocation->setText(SettingsManager::weatherLocation());
+    ui->commuteApiKey->setText(SettingsManager::commuteApiKey());
+    ui->commuteStartLong->setText(SettingsManager::commuteStartLongitude());
+    ui->commuteStartLat->setText(SettingsManager::commuteStartLatitude());
+    ui->commuteEndLong->setText(SettingsManager::commuteEndLongitude());
+    ui->commuteEndLat->setText(SettingsManager::commuteEndLatitude());
+    ui->newsApiKey->setText(SettingsManager::newsApiKey());
 }
 
 void SettingsPage::navToMain() {
@@ -190,6 +199,15 @@ void SettingsPage::save() {
     SettingsManager::setIsSystemStatsEnabled(ui->sysstatsCheckbox->isChecked());
     SettingsManager::setIsCommuteEnabled(ui->commuteCheckbox->isChecked());
     SettingsManager::setIsNewsEnabled(ui->newsCheckbox->isChecked());
+
+    SettingsManager::setWeatherApiKey(ui->weatherApiKey->text());
+    SettingsManager::setWeatherLocation(ui->weatherLocation->text());
+    SettingsManager::setCommuteApiKey(ui->commuteApiKey->text());
+    SettingsManager::setCommuteStartLongitude(ui->commuteStartLong->text());
+    SettingsManager::setCommuteStartLatitude(ui->commuteStartLat->text());
+    SettingsManager::setCommuteEndLongitude(ui->commuteEndLong->text());
+    SettingsManager::setCommuteEndLatitude(ui->commuteEndLat->text());
+    SettingsManager::setNewsApiKey(ui->newsApiKey->text());
 
     emit settingsSaved();
     setPageEnabled(true);

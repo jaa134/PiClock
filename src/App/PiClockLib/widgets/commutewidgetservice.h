@@ -28,6 +28,9 @@ public:
     void init() Q_DECL_OVERRIDE;
 
 private:
+    QString apiKey;
+    QString wpStart;
+    QString wpEnd;
     QNetworkAccessManager *manager;
     QNetworkRequest request;
     void getCommute();

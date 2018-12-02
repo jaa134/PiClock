@@ -3,6 +3,9 @@
 WeatherWidgetService::WeatherWidgetService() {
     manager = nullptr;
 
+    apiKey = SettingsManager::weatherApiKey();
+    apiLocation = SettingsManager::weatherLocation();
+
     connect(&updateTimer, &QTimer::timeout, this, &WeatherWidgetService::update);
     updateTimer.setInterval(600000);
 }
@@ -20,7 +23,7 @@ void WeatherWidgetService::getWeather() {
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &WeatherWidgetService::generateWeather);
-    request.setUrl(QUrl("http://api.apixu.com/v1/current.json?key=c7e7a336a66244cd81641549180911&q=44101"));
+    request.setUrl(QUrl("http://api.apixu.com/v1/current.json?key=" + apiKey + "&q=" + apiLocation));
     manager->get(request);
 }
 

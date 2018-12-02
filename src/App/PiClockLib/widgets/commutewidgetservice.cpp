@@ -4,6 +4,10 @@ CommuteWidgetService::CommuteWidgetService()
 {
     manager = nullptr;
 
+    apiKey = SettingsManager::commuteApiKey();
+    wpStart = SettingsManager::commuteStartLongitude() + "," + SettingsManager::commuteStartLatitude();
+    wpEnd = SettingsManager::commuteEndLongitude() + "," + SettingsManager::commuteEndLatitude();
+
     connect(&updateTimer, &QTimer::timeout, this, &CommuteWidgetService::update);
     updateTimer.setInterval(120000);
 }
@@ -21,7 +25,7 @@ void CommuteWidgetService::getCommute() {
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &CommuteWidgetService::generateCommute);
-    request.setUrl(QUrl("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0=41.499803183159976,-81.59453630447389&wp.1=41.46306273702346,-81.9564950466156&avoid=minimizeTolls&du=mi&key=AoqKK9JbiMuCDMht8ZrRUajildqZDGNZlSe-omiay7n3x7k13Pnxz_WI_pucpASD"));
+    request.setUrl(QUrl("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0=" + wpStart + "&wp.1=" + wpEnd + "&avoid=minimizeTolls&du=mi&key=" + apiKey));
     manager->get(request);
 }
 

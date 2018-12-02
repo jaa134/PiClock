@@ -29,6 +29,7 @@ public:
     void init() Q_DECL_OVERRIDE;
 
 private:
+    QString apiKey;
     QNetworkAccessManager *manager;
     QNetworkRequest request;
     QList<NewsStory> newsStories;

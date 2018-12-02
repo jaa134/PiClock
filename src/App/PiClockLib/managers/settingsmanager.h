@@ -48,6 +48,33 @@ public:
     static void setIsSystemStatsEnabled(bool);
     static void setIsCommuteEnabled(bool);
     static void setIsNewsEnabled(bool);
+
+    static QString defaultWeatherApiKey();
+    static QString weatherApiKey();
+    static void setWeatherApiKey(QString);
+    static QString defaultWeatherLocation();
+    static QString weatherLocation();
+    static void setWeatherLocation(QString);
+
+    static QString defaultCommuteApiKey();
+    static QString commuteApiKey();
+    static void setCommuteApiKey(QString);
+    static QString defaultCommuteStartLongitude();
+    static QString defaultCommuteStartLatitude();
+    static QString defaultCommuteEndLongitude();
+    static QString defaultCommuteEndLatitude();
+    static QString commuteStartLongitude();
+    static QString commuteStartLatitude();
+    static QString commuteEndLongitude();
+    static QString commuteEndLatitude();
+    static void setCommuteStartLongitude(QString);
+    static void setCommuteStartLatitude(QString);
+    static void setCommuteEndLongitude(QString);
+    static void setCommuteEndLatitude(QString);
+
+    static QString defaultNewsApiKey();
+    static QString newsApiKey();
+    static void setNewsApiKey(QString);
 };
 
 #endif // SETTINGSMANAGER_H

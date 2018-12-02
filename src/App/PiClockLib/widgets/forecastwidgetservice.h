@@ -32,6 +32,8 @@ public:
     void init() Q_DECL_OVERRIDE;
 
 private:
+    QString apiKey;
+    QString apiLocation;
     QNetworkAccessManager *manager;
     QNetworkRequest request;
     void getForecast();

@@ -3,6 +3,9 @@
 ForecastWidgetService::ForecastWidgetService() {
     manager = nullptr;
 
+    apiKey = SettingsManager::weatherApiKey();
+    apiLocation = SettingsManager::weatherLocation();
+
     connect(&updateTimer, &QTimer::timeout, this, &ForecastWidgetService::update);
     updateTimer.setInterval(600000);
 }
@@ -20,7 +23,7 @@ void ForecastWidgetService::getForecast() {
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &ForecastWidgetService::generateForecast);
-    request.setUrl(QUrl("http://api.apixu.com/v1/forecast.json?key=c7e7a336a66244cd81641549180911&q=44101&days=7"));
+    request.setUrl(QUrl("http://api.apixu.com/v1/forecast.json?key=" + apiKey + "&q=" + apiLocation + "&days=" + QString::number(numDays)));
     manager->get(request);
 }
 

@@ -6,6 +6,8 @@ NewsWidgetService::NewsWidgetService() {
 
     manager = nullptr;
 
+    apiKey = SettingsManager::newsApiKey();
+
     connect(&updateTimer, &QTimer::timeout, this, &NewsWidgetService::update);
     updateTimer.setInterval(SettingsManager::widgetTransitionDuration());
 }
@@ -41,7 +43,7 @@ void NewsWidgetService::getNews() {
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &NewsWidgetService::generateNewsStories);
-    request.setUrl(QUrl("https://newsapi.org/v2/top-headlines?country=us&apiKey=40d29d4a15e44563afdf0826bc61b64f"));
+    request.setUrl(QUrl("https://newsapi.org/v2/top-headlines?country=us&apiKey=" + apiKey));
     manager->get(request);
 }
 
