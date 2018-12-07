@@ -12,6 +12,7 @@ void DragListWidget::mousePressEvent(QMouseEvent *event)
     m_dragStartPos = event->pos().y();
 }
 
+//allows for clicking on list item even if slight drag occurs
 void DragListWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     if(m_dragState) {
@@ -24,6 +25,7 @@ void DragListWidget::mouseReleaseEvent(QMouseEvent *event)
     super::mouseReleaseEvent(event);
 }
 
+//allows for scrolling on drag
 void DragListWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_dragState != DragStopped) {

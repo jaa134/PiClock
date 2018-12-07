@@ -6,6 +6,7 @@ WeatherWidgetService::WeatherWidgetService() {
     apiKey = SettingsManager::weatherApiKey();
     apiLocation = SettingsManager::weatherLocation();
 
+    //create update timer
     connect(&updateTimer, &QTimer::timeout, this, &WeatherWidgetService::update);
     updateTimer.setInterval(600000);
 }
@@ -20,6 +21,7 @@ void WeatherWidgetService::update() {
 }
 
 void WeatherWidgetService::getWeather() {
+    //send get request for weather data
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &WeatherWidgetService::generateWeather);
@@ -28,11 +30,13 @@ void WeatherWidgetService::getWeather() {
 }
 
 void WeatherWidgetService::generateWeather(QNetworkReply *reply) {
+    //log an error if there is any
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
     }
 
+    //parse response json for network request
     QString answer = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(answer.toUtf8());
     QJsonObject jsonObject = jsonResponse.object();

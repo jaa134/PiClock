@@ -7,6 +7,7 @@ ForecastWidget::ForecastWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new ForecastWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &ForecastWidgetService::updated, this, &ForecastWidget::display);
@@ -22,6 +23,7 @@ ForecastWidget::~ForecastWidget()
 }
 
 void ForecastWidget::display() {
+    //show information in the ui
     ui->dateLabel_1->setText(service->forecast[1].date);
     ui->dateLabel_2->setText(service->forecast[2].date);
     ui->dateLabel_3->setText(service->forecast[3].date);

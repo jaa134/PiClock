@@ -7,6 +7,7 @@ WeatherWidget::WeatherWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new WeatherWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &WeatherWidgetService::updated, this, &WeatherWidget::display);
@@ -22,6 +23,7 @@ WeatherWidget::~WeatherWidget()
 }
 
 void WeatherWidget::display() {
+    //show information in the ui
     ui->weatherIconContainer->load(service->weather.type);
     ui->degreeValue->setText(service->weather.currentTemp);
     ui->locationValue->setText(service->weather.location + ", " + service->weather.region);

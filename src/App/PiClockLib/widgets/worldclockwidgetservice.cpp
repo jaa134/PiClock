@@ -10,6 +10,7 @@
 #define TOK (+9)
 
 WorldClockWidgetService::WorldClockWidgetService() {
+    //set the name of each city
     cities[0].name = "Los Angeles";
     cities[1].name = "New York City";
     cities[2].name = "Beijing";
@@ -17,6 +18,7 @@ WorldClockWidgetService::WorldClockWidgetService() {
     cities[4].name = "Tokyo";
     cities[5].name = "Dubai";
 
+    //setup a timer for updating the ui
     connect(&updateTimer, &QTimer::timeout, this, &WorldClockWidgetService::update);
     updateTimer.setInterval(1000);
 }
@@ -27,10 +29,12 @@ void WorldClockWidgetService::init() {
 }
 
 void WorldClockWidgetService::update() {
+    //find the time format
     QString format = SettingsManager::clockTimeFormat();
     QTime current = QDateTime::currentDateTimeUtc().time();
 
     int secsInHour = 3600;
+    //set the time formatted for each city
     cities[0].time = current.addSecs(PST * secsInHour).toString(format);
     cities[1].time = current.addSecs(EST * secsInHour).toString(format);
     cities[2].time = current.addSecs(CCT * secsInHour).toString(format);

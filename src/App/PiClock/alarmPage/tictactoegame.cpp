@@ -9,16 +9,19 @@ TicTacToeGame::TicTacToeGame(QWidget *parent) :
 
     service = new TicTacToeGameService();
 
+    //setup timer that creates pause between user to cpu turns
     cpuMoveTimer = new QTimer();
     cpuMoveTimer->setSingleShot(true);
     cpuMoveTimer->setInterval(500);
     connect(cpuMoveTimer, &QTimer::timeout, this, &TicTacToeGame::requestComputerMove);
 
+    //setup timer that creates pause in between game board reset
     gameBoardTimer = new QTimer();
     gameBoardTimer->setSingleShot(true);
     gameBoardTimer->setInterval(500);
     connect(gameBoardTimer, &QTimer::timeout, this, &TicTacToeGame::requestNewGameBoard);
 
+    //setup game buttons actions
     connect(ui->btn00, &QPushButton::released, this, &TicTacToeGame::onButton00);
     connect(ui->btn01, &QPushButton::released, this, &TicTacToeGame::onButton01);
     connect(ui->btn02, &QPushButton::released, this, &TicTacToeGame::onButton02);
@@ -87,16 +90,21 @@ void TicTacToeGame::onPlayerMove(int row, int col) {
         return;
 
     isAcceptingInput = false;
+    //make a move
     TicTacToeGameService::MoveOutcome outcome = service->playerMove(row, col);
+    //dont do anything if the move is invalid
     if (outcome == TicTacToeGameService::MoveOutcome::Invalid) {
         isAcceptingInput = true;
         return;
     }
 
+    //update the game board visuals
     updateGameBoard();
 
+    //if there is not a win, start cpu move timer
     if (outcome == TicTacToeGameService::MoveOutcome::Inconclusive)
         cpuMoveTimer->start();
+    //else update points
     else {
         emit pointsUpdated(service->numPointsNeeded());
         gameBoardTimer->start();
@@ -104,11 +112,15 @@ void TicTacToeGame::onPlayerMove(int row, int col) {
 }
 
 void TicTacToeGame::requestComputerMove() {
+    //make the computer move
     TicTacToeGameService::MoveOutcome outcome = service->computerMove();
+    //update game board visuals
     updateGameBoard();
 
+    //if there is not a win, let player move
     if (outcome == TicTacToeGameService::MoveOutcome::Inconclusive)
         isAcceptingInput = true;
+    //else update points
     else {
         emit pointsUpdated(service->numPointsNeeded());
         gameBoardTimer->start();
@@ -116,17 +128,20 @@ void TicTacToeGame::requestComputerMove() {
 }
 
 void TicTacToeGame::requestNewGameBoard() {
+    //check if there is a winner, if there is, dont do anything
     if (service->isWinner()) {
         emit gameOver();
         return;
     }
 
+    //reset the board
     service->newBoard();
     updateGameBoard();
     isAcceptingInput = true;
 }
 
 void TicTacToeGame::updateGameBoard() {
+    //update visuals to game board
     ui->btn00->setText(QChar(service->board[0][0]));
     ui->btn01->setText(QChar(service->board[0][1]));
     ui->btn02->setText(QChar(service->board[0][2]));

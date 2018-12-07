@@ -8,6 +8,7 @@ CommuteWidgetService::CommuteWidgetService()
     wpStart = SettingsManager::commuteStartLongitude() + "," + SettingsManager::commuteStartLatitude();
     wpEnd = SettingsManager::commuteEndLongitude() + "," + SettingsManager::commuteEndLatitude();
 
+    //create update timer
     connect(&updateTimer, &QTimer::timeout, this, &CommuteWidgetService::update);
     updateTimer.setInterval(120000);
 }
@@ -22,6 +23,7 @@ void CommuteWidgetService::update() {
 }
 
 void CommuteWidgetService::getCommute() {
+    //make get request for commute data
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &CommuteWidgetService::generateCommute);
@@ -30,11 +32,13 @@ void CommuteWidgetService::getCommute() {
 }
 
 void CommuteWidgetService::generateCommute(QNetworkReply *reply) {
+    //log any errors
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
     }
 
+    //read network response and parse data
     QString answer = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(answer.toUtf8());
     QJsonArray resourceSets = jsonResponse.object()["resourceSets"].toArray();

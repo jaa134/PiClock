@@ -9,11 +9,13 @@ MemoryGame::MemoryGame(QWidget *parent) :
 
     service = new MemoryGameService();
 
+    //setup the pause timer in between moves
     timer = new QTimer();
     timer->setSingleShot(true);
     timer->setInterval(1500);
     connect(timer, &QTimer::timeout, this, &MemoryGame::resetGameboardForNextTurn);
 
+    //setup button actions
     connect(ui->btn00, &QPushButton::released, this, &MemoryGame::onButton00);
     connect(ui->btn01, &QPushButton::released, this, &MemoryGame::onButton01);
     connect(ui->btn02, &QPushButton::released, this, &MemoryGame::onButton02);
@@ -130,9 +132,12 @@ void MemoryGame::onButton33() {
 }
 
 void MemoryGame::onPlayerMove() {
+    //if two cards are flipped
     if (service->selectedCards().length() == 2) {
         setInputEnabled(false);
+        //evaluate the outcome
         MemoryGameService::MoveOutcome outcome = service->playerMove();
+        //if theres a match award points and possibly end game
         if (outcome == MemoryGameService::MoveOutcome::Match) {
             emit pointsUpdated(service->numPointsNeeded());
             QCoreApplication::processEvents();
@@ -142,6 +147,7 @@ void MemoryGame::onPlayerMove() {
                 return;
             }
         }
+        //else start the pause timer that will hide the cards again after a set period
         else {
             timer->start();
         }
@@ -165,6 +171,7 @@ bool MemoryGame::selectCard(int row, int col, QLabel *cardUI) {
     return true;
 }
 
+//flip a card face down
 bool MemoryGame::unselectCard(int row, int col, QLabel *cardUI) {
     MemoryGameService::Card *card = &service->board[row][col];
 
@@ -177,6 +184,7 @@ bool MemoryGame::unselectCard(int row, int col, QLabel *cardUI) {
 }
 
 void MemoryGame::resetGameboardForNextTurn() {
+    //flip every card face down
     unselectCard(row0, col0, ui->label00);
     unselectCard(row0, col1, ui->label01);
     unselectCard(row0, col2, ui->label02);

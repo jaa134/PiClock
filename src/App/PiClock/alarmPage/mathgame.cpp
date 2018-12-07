@@ -9,6 +9,7 @@ MathGame::MathGame(QWidget *parent) :
 
     service = new MathGameService();
 
+    //setup pause timer between questions
     timer = new QTimer();
     timer->setSingleShot(true);
     timer->setInterval(1500);
@@ -16,6 +17,7 @@ MathGame::MathGame(QWidget *parent) :
 
     isAcceptingInput = false;
 
+    //setup game buttons
     connect(ui->answerButtonA, &QPushButton::released, this, &MathGame::onButtonA);
     connect(ui->answerButtonB, &QPushButton::released, this, &MathGame::onButtonB);
     connect(ui->answerButtonC, &QPushButton::released, this, &MathGame::onButtonC);
@@ -78,12 +80,15 @@ void MathGame::setAnswerStyles(bool isCorrect, int option) {
     QString buttonBackgroundColor;
 
     if (isCorrect) {
+        //color it green
         buttonBackgroundColor = "background-color: #47d147";
     }
     else {
+        //color it red
         buttonBackgroundColor = "background-color: #ff3333";
     }
 
+    //add the style to the button pressed
     switch (option) {
         case optionA: {
             ui->answerButtonA->setStyleSheet(buttonBackgroundColor);
@@ -116,6 +121,7 @@ void MathGame::nextQuestion() {
 }
 
 void MathGame::setDefaultStyles() {
+    //add back in the default grey button color
     QString buttonBackgroundColor = "background-color: rgb(210, 210, 210)";
     ui->answerButtonA->setStyleSheet(buttonBackgroundColor);
     ui->answerButtonB->setStyleSheet(buttonBackgroundColor);
@@ -124,8 +130,10 @@ void MathGame::setDefaultStyles() {
 }
 
 void MathGame::displayQuestion() {
+    //show the question
     ui->questionLabel->setText(service->question.text);
 
+    //show the answers
     ui->answerButtonA->setText(service->question.options[optionA].text);
     ui->answerButtonB->setText(service->question.options[optionB].text);
     ui->answerButtonC->setText(service->question.options[optionC].text);

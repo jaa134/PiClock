@@ -6,6 +6,7 @@ ForecastWidgetService::ForecastWidgetService() {
     apiKey = SettingsManager::weatherApiKey();
     apiLocation = SettingsManager::weatherLocation();
 
+    //create update timer
     connect(&updateTimer, &QTimer::timeout, this, &ForecastWidgetService::update);
     updateTimer.setInterval(600000);
 }
@@ -20,6 +21,7 @@ void ForecastWidgetService::update() {
 }
 
 void ForecastWidgetService::getForecast() {
+    //send get request for forecast data
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &ForecastWidgetService::generateForecast);
@@ -28,11 +30,13 @@ void ForecastWidgetService::getForecast() {
 }
 
 void ForecastWidgetService::generateForecast(QNetworkReply *reply) {
+    //log any errors
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
     }
 
+    //read network response and parse json
     QString answer = reply->readAll();
     QJsonObject replyObject = QJsonDocument::fromJson(answer.toUtf8()).object();
 

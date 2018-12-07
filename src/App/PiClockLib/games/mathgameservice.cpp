@@ -13,13 +13,16 @@ QString MathGameService::operators[] = { ADD, SUBTRACT, MULTIPLY, DIVIDE };
 
 bool MathGameService::generateQuestion() {
     std::srand(time(nullptr));
+    //chose two random numbers and a random operator
     int num1 = (rand() % (maxNum-minNum + 1)) + minNum;
     int num2 = (rand() % (maxNum-minNum + 1)) + minNum;
     QString op = operators[rand() % numOperators];
 
+    //dont use zero
     if (num1 == 0 || num2 == 0)
         return false;
 
+    //set the question text
     question.text = QString::number(num1) + "  " + op + "  " + QString::number(num2);
 
     Answer a0;
@@ -32,6 +35,7 @@ bool MathGameService::generateQuestion() {
     a2.isCorrect = op == MULTIPLY;
     a3.isCorrect = op == DIVIDE;
 
+    //set the answer text
     a0.text = QString::number(num1 + num2);
     a1.text = QString::number(num1 - num2);
     a2.text = QString::number(num1 * num2);
@@ -53,9 +57,12 @@ bool MathGameService::generateQuestion() {
 }
 
 bool MathGameService::answer(int choice) {
+    //test if the choice is correct
     bool isCorrect = question.options[choice].isCorrect;
+    //add points if it is correct
     if (isCorrect)
         currentPoints++;
+    //generate the next quetion
     while (!generateQuestion());
     return isCorrect;
 }

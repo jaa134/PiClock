@@ -17,33 +17,40 @@ AlarmPage::AlarmPage(Ui::PiClockApp *ui) {
 }
 
 void AlarmPage::init() {
+    //timer to update remaining time label
     timer_clock->setInterval(100);
     connect(timer_clock, &QTimer::timeout, this, &AlarmPage::updateRemainingTime);
 
+    //timer to add pause before navigating between pages
     connect(alarm_manager, &AlarmManager::alarmStopped, this, &AlarmPage::navToMain);
     connect(alarm_manager, &AlarmManager::alarmStarted, this, &AlarmPage::navToAlarm);
     alarm_manager->init();
     emit chunkLoaded();
 
+    //create the math game module
     MathGame *mathGame = new MathGame();
     ui->games->addWidget(mathGame);
     connect(mathGame, &MathGame::gameOver, this, &AlarmPage::onGameOver);
     connect(mathGame, &MathGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
 
+    //create the tic tac toe game module
     TicTacToeGame *tictactoeGame = new TicTacToeGame();
     ui->games->addWidget(tictactoeGame);
     connect(tictactoeGame, &TicTacToeGame::gameOver, this, &AlarmPage::onGameOver);
     connect(tictactoeGame, &TicTacToeGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
 
+    //create the memory game module
     MemoryGame *memoryGame = new MemoryGame();
     ui->games->addWidget(memoryGame);
     connect(memoryGame, &MemoryGame::gameOver, this, &AlarmPage::onGameOver);
     connect(memoryGame, &MemoryGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
 
+    //create the trivia game module
     TriviaGame *triviaGame = new TriviaGame();
     ui->games->addWidget(triviaGame);
     connect(triviaGame, &TriviaGame::gameOver, this, &AlarmPage::onGameOver);
     connect(triviaGame, &TriviaGame::pointsUpdated, this, &AlarmPage::updatePointsLabel);
+
     emit chunkLoaded();
 }
 
@@ -57,6 +64,7 @@ void AlarmPage::navToMain() {
 }
 
 void AlarmPage::navToAlarm(Game::Type type, Game::Difficulty difficulty) {
+    //switch off the game type to use and show that game type
     switch (type) {
         case Game::Type::Math: {
             ui->games->setCurrentIndex(MATH);

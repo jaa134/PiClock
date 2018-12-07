@@ -7,6 +7,7 @@ SystemStatisticsWidget::SystemStatisticsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new SystemStatisticsWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &SystemStatisticsWidgetService::updated, this, &SystemStatisticsWidget::display);
@@ -22,6 +23,7 @@ SystemStatisticsWidget::~SystemStatisticsWidget()
 }
 
 void SystemStatisticsWidget::display() {
+    //show information in the ui
     int baseVal = 5;
     ui->cpuBar->setValue(service->cpuUsage + baseVal);
     setWarningColor(ui->cpuBar);
@@ -35,6 +37,8 @@ void SystemStatisticsWidget::display() {
 }
 
 void SystemStatisticsWidget::setWarningColor(QProgressBar *bar) {
+    //warning colors are in order of green, yellow, orange, red
+
     QString barStyle = "QProgressBar { border-radius: 5px; }";
     QString chunkColor = "";
 

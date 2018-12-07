@@ -6,14 +6,17 @@
 
 AlarmManager::AlarmManager()
 {
+    //creates a timer that triggers the alarm
     start_timer = new QTimer();
     start_timer->setSingleShot(true);
     connect(start_timer, SIGNAL(timeout()), this, SLOT(startAlarm()));
 
+    //creates a timer that will stop the alarm
     stop_timer = new QTimer();
     stop_timer->setSingleShot(true);
     connect(stop_timer, SIGNAL(timeout()), this, SLOT(stopAlarm()));
 
+    //set a sound effect for the alarm
     sound = new QSoundEffect();
     sound->setSource(QUrl("qrc:/sounds/alarm.wav"));
     sound->setLoopCount(QSoundEffect::Infinite);
@@ -27,6 +30,8 @@ void AlarmManager::init() {
     if (alarms.isEmpty())
         return;
 
+    //sort alarms in order of next to trigger
+    //find the next to trigger
     alarms = sortAlarms(alarms);
     Alarm a = alarms.first();
     next_alarm = new Alarm(a);
@@ -42,10 +47,12 @@ void AlarmManager::init() {
 QList<Alarm> AlarmManager::sortAlarms(QList<Alarm> alarms) {
     std::sort(alarms.begin(), alarms.end(), [](Alarm a1, Alarm a2){
         int mSecs1 = QTime::currentTime().msecsTo(a1.data().time);
+        //add a day if that time has already passed
         if (mSecs1 < 0)
             mSecs1 += QDateTime::currentDateTime().msecsTo(QDateTime::currentDateTime().addDays(1));
 
         int mSecs2 = QTime::currentTime().msecsTo(a2.data().time);
+        //add a day if that time has already passed
         if (mSecs2 < 0)
             mSecs2 += QDateTime::currentDateTime().msecsTo(QDateTime::currentDateTime().addDays(1));
 

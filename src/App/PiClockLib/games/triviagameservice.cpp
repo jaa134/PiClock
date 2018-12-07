@@ -8,17 +8,20 @@ TriviaGameService::TriviaGameService() {
 }
 
 void TriviaGameService::getQuestions() {
+    //make a network request for questions
     request.setUrl(QUrl("https://opentdb.com/api.php?amount=100&type=multiple"));
     manager->get(request);
     replyLoop.exec();
 }
 
 void TriviaGameService::generateQuestions(QNetworkReply *reply) {
+    //if there is an answer, send it to debug
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
     }
 
+    //read contents and parse json
     QString answer = reply->readAll();
 
     QJsonDocument jsonResponse = QJsonDocument::fromJson(answer.toUtf8());
@@ -45,12 +48,14 @@ void TriviaGameService::generateQuestions(QNetworkReply *reply) {
 }
 
 QString TriviaGameService::toPlainString(QString ques) {
+    //remove special chars
     QTextDocument text;
     text.setHtml(ques);
     return text.toPlainText();
 }
 
 TriviaGameService::Question TriviaGameService::responseToQuestion(ResponseObject response) {
+    //make a question from response object
     Question q;
     q.text = response.question;
 
@@ -77,9 +82,12 @@ TriviaGameService::Question TriviaGameService::responseToQuestion(ResponseObject
 }
 
 bool TriviaGameService::answer(int choice) {
+    //answer the question
     bool isCorrect = question.options[choice].isCorrect;
+    //award points if its correct
     if (isCorrect)
         currentPoints++;
+    //change question
     cycleQuestion();
     return isCorrect;
 }
@@ -87,6 +95,7 @@ bool TriviaGameService::answer(int choice) {
 void TriviaGameService::reset(Game::Difficulty difficulty) {
     currentPoints = 0;
 
+    //update number of points required to win
     if (difficulty == Game::Difficulty::Easy)
         pointsToWin = 3;
     if (difficulty == Game::Difficulty::Medium)
@@ -110,6 +119,7 @@ void TriviaGameService::cycleQuestion() {
 }
 
 bool TriviaGameService::isValidQuestion() {
+    //valid questions must be of a certain length to show in full in the ui
     int maxQuestionLength = 60;
     int maxAnswerLength = 22;
     return question.text.length() <= maxQuestionLength &&

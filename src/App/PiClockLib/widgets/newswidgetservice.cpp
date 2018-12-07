@@ -8,6 +8,7 @@ NewsWidgetService::NewsWidgetService() {
 
     apiKey = SettingsManager::newsApiKey();
 
+    //create update timer
     connect(&updateTimer, &QTimer::timeout, this, &NewsWidgetService::update);
     updateTimer.setInterval(SettingsManager::widgetTransitionDuration());
 }
@@ -18,6 +19,7 @@ void NewsWidgetService::init() {
 }
 
 void NewsWidgetService::update() {
+    //use quote from storage if possible, or make request if none left
     do {
         if (newsStories.isEmpty()) {
             getNews();
@@ -31,6 +33,7 @@ void NewsWidgetService::update() {
 }
 
 bool NewsWidgetService::isValidNewsStory() {
+    //validity depends on length per ui constraints
     int maxTitleLength = 80;
     int maxSourceLength = 25;
     return newsStory.title.length() <= maxTitleLength
@@ -40,6 +43,7 @@ bool NewsWidgetService::isValidNewsStory() {
 }
 
 void NewsWidgetService::getNews() {
+    //make http request for news data
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &NewsWidgetService::generateNewsStories);
@@ -48,11 +52,13 @@ void NewsWidgetService::getNews() {
 }
 
 void NewsWidgetService::generateNewsStories(QNetworkReply *reply) {
+    //log any errors
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
     }
 
+    //read network response and parse json
     QString answer = reply->readAll();
     QJsonObject jsonResponse = QJsonDocument::fromJson(answer.toUtf8()).object();
     QJsonArray jsonArray = jsonResponse["articles"].toArray();
@@ -68,6 +74,7 @@ void NewsWidgetService::generateNewsStories(QNetworkReply *reply) {
     emit updated();
 }
 
+//remove any special characters
 QString NewsWidgetService::toPlainString(QString ques) {
     QTextDocument text;
     text.setHtml(ques);

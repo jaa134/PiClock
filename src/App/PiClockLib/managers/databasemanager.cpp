@@ -7,11 +7,13 @@
 #define CONNECTION "PiClock"
 
 void DatabaseManager::initDb() {
+    //establish a connection to the database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", CONNECTION);
     QString dbPath = QCoreApplication::applicationDirPath() + "/../../db/PiClock.db";
     db.setDatabaseName(dbPath);
     db.open();
 
+    //create the databae file if it doesnt already exist
     if (db.tables().isEmpty())
         createDb();
 }
@@ -69,10 +71,12 @@ void  DatabaseManager::removeAlarms() {
 }
 
 QList<Alarm> DatabaseManager::retrieveAlarms() {
+    //pull all entries from alarm table
     QString query = QString("SELECT * FROM Alarm");
     QSqlQuery result = execQuery(query);
     QList<Alarm> alarms = QList<Alarm>();
     while (result.next()) {
+        //make each alarm as an alarm model object and append to list
         QTime time = QTime::fromString(result.value("Time").toString());
         Game::Type type = Game::Type(result.value("Type").toInt());
         Game::Difficulty difficulty = Game::Difficulty(result.value("Difficulty").toInt());

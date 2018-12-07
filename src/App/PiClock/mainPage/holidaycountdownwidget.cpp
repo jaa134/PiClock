@@ -7,6 +7,7 @@ HolidayCountdownWidget::HolidayCountdownWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new HolidayCountdownWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &HolidayCountdownWidgetService::updated, this, &HolidayCountdownWidget::display);
@@ -24,6 +25,7 @@ HolidayCountdownWidget::~HolidayCountdownWidget()
 #include "QDebug"
 
 void HolidayCountdownWidget::display() {
+    //show information in the ui
     QString numDaysUntil = QString::number(QDate::currentDate().daysTo(service->holiday.date));
     QString contentLeft = ""
               "<p align=\"center\" style=\"color: #fff;\">"

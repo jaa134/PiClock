@@ -7,6 +7,7 @@ QuotesWidget::QuotesWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new QuotesWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &QuotesWidgetService::updated, this, &QuotesWidget::display);
@@ -22,6 +23,7 @@ QuotesWidget::~QuotesWidget()
 }
 
 void QuotesWidget::display() {
+    //show information in the ui
     ui->text->setHtml("<p align=\"center\"><span>" + service->quote.content + "</span></p>"
                     + "<p align=\"center\" style=\"font-size: 35px;\"><span><strong>" + service->quote.author + "</strong></span></p>");
 }

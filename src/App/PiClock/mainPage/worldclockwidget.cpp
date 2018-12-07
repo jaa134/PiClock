@@ -7,6 +7,7 @@ WorldClockWidget::WorldClockWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new WorldClockWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &WorldClockWidgetService::updated, this, &WorldClockWidget::display);
@@ -22,6 +23,7 @@ WorldClockWidget::~WorldClockWidget()
 }
 
 void WorldClockWidget::display() {
+    //show information in the ui
     ui->city0->setText(service->cities[0].name);
     ui->city1->setText(service->cities[1].name);
     ui->city2->setText(service->cities[2].name);

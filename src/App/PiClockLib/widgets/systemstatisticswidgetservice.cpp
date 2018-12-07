@@ -33,10 +33,12 @@ int SystemStatisticsWidgetService::getCpuUsage() {
     double percent;
     unsigned long long totalUser, totalUserLow, totalSys, totalIdle, total;
 
+    //read in important cpu values
     FILE *file = fopen("/proc/stat", "r");
     fscanf(file, "cpu %llu %llu %llu %llu", &totalUser, &totalUserLow, &totalSys, &totalIdle);
     fclose(file);
 
+    //calculate difference in values for usage percent
     if (totalUser < lastTotalUser || totalUserLow < lastTotalUserLow ||
         totalSys < lastTotalSys || totalIdle < lastTotalIdle){
         percent = 0.0;
@@ -74,6 +76,7 @@ int SystemStatisticsWidgetService::getDiscUsage() {
 }
 
 int SystemStatisticsWidgetService::getNetworkUsage() {
+    //read in important netowrk values
     QFile f("/proc/net/dev");
     f.open(QIODevice::ReadOnly);
     QString deviceName;
@@ -87,6 +90,7 @@ int SystemStatisticsWidgetService::getNetworkUsage() {
     ts >> totalBytesUsed;
     f.close();
 
+    //calculate difference in values for usage percent
     double percent;
     if (totalBytesUsed < lastBytesUsed)
         percent = 0.0;

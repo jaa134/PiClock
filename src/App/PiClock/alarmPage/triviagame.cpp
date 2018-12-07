@@ -10,6 +10,7 @@ TriviaGame::TriviaGame(QWidget *parent) :
 
     service = new TriviaGameService();
 
+    //setup timer inbetween turns
     timer = new QTimer();
     timer->setSingleShot(true);
     timer->setInterval(1500);
@@ -17,6 +18,7 @@ TriviaGame::TriviaGame(QWidget *parent) :
 
     isAcceptingInput = false;
 
+    //setup game buttons
     connect(ui->answerButtonA, &QPushButton::released, this, &TriviaGame::onButtonA);
     connect(ui->answerButtonB, &QPushButton::released, this, &TriviaGame::onButtonB);
     connect(ui->answerButtonC, &QPushButton::released, this, &TriviaGame::onButtonC);
@@ -67,10 +69,13 @@ void TriviaGame::onButtonD() {
 }
 
 void TriviaGame::onAnswer(int option) {
+    //determine if answer is correct
     bool isCorrect = service->answer(option);
+    //update points if correct
     if (isCorrect)
         emit pointsUpdated(service->numPointsNeeded());
 
+    //update button styles
     setAnswerStyles(isCorrect, option);
     timer->start();
 }
@@ -78,17 +83,18 @@ void TriviaGame::onAnswer(int option) {
 void TriviaGame::setAnswerStyles(bool isCorrect, int option) {
     QString buttonBackgroundColor;
 
-    if (isCorrect) {
+    //set correct answers to green background
+    if (isCorrect)
         buttonBackgroundColor = "background-color: #47d147;";
-    }
-    else {
+    //set incorrect answers to red background
+    else
         buttonBackgroundColor = "background-color: #ff3333;";
-    }
 
     QString style = buttonBackgroundColor +
             "border: 0;"
             "padding: 10px;";
 
+    //determine which button to apply the style to
     switch (option) {
         case optionA: {
             ui->contentA->setStyleSheet(style);
@@ -121,6 +127,7 @@ void TriviaGame::nextQuestion() {
 }
 
 void TriviaGame::setDefaultStyles() {
+    //add default grey color to buttons
     QString buttonBackgroundColor = "background-color: rgb(210, 210, 210);";
     QString style = buttonBackgroundColor +
             "border: 0;"
@@ -132,8 +139,10 @@ void TriviaGame::setDefaultStyles() {
 }
 
 void TriviaGame::displayQuestion() {
+    //display the question
     ui->questionLabel->setText(service->question.text);
 
+    //display the answers
     ui->contentA->setText(service->question.options[optionA].text);
     ui->contentB->setText(service->question.options[optionB].text);
     ui->contentC->setText(service->question.options[optionC].text);

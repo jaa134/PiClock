@@ -7,6 +7,7 @@ CommuteWidget::CommuteWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new CommuteWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &CommuteWidgetService::updated, this, &CommuteWidget::display);
@@ -22,6 +23,7 @@ CommuteWidget::~CommuteWidget()
 }
 
 void CommuteWidget::display() {
+    //show information in the ui
     ui->arrivalValue->setText(service->commute.arrivalTime);
     ui->durationValue->setText(service->commute.totalTime);
     ui->trafficValue->setText(service->commute.trafficVolume);

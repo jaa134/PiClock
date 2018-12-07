@@ -7,6 +7,7 @@ NewsWidget::NewsWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //timer to update widget
     service = new NewsWidgetService();
     service->moveToThread(&serviceThread);
     connect(service, &NewsWidgetService::updated, this, &NewsWidget::display);
@@ -22,6 +23,7 @@ NewsWidget::~NewsWidget()
 }
 
 void NewsWidget::display() {
+    //show information in the ui
     ui->text->setHtml("<p align=\"center\"><span>" + service->newsStory.title + "</span></p>"
                     + "<p align=\"center\" style=\"font-size: 35px;\"><span><strong>" + service->newsStory.source + "</strong></span></p>");
 }

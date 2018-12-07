@@ -122,6 +122,7 @@ void SettingsPage::removeAlarm(AlarmListItem *widget) {
 }
 
 void SettingsPage::loadSettings() {
+    //load clock format
     if (timeFormat == HOURFORMAT12)
         ui->clockTimeFormatOptions->setCurrentIndex(0);
     else if (timeFormat == HOURFORMAT24)
@@ -129,6 +130,7 @@ void SettingsPage::loadSettings() {
     else
         ui->clockTimeFormatOptions->setCurrentIndex(-1);
 
+    //load widget trantion
     ui->slideDurationSlider->setValue(SettingsManager::widgetTransitionDuration() / 1000);
     showNewSlideDurationValue();
 
@@ -136,6 +138,7 @@ void SettingsPage::loadSettings() {
     ui->alarmGameEdit->setCurrentIndex(0);
     ui->alarmDifficultyEdit->setCurrentIndex(0);
 
+    //load alarms
     QList<Alarm> alarms = DatabaseManager::retrieveAlarms();
     QListWidgetItem *item;
     while((item = ui->alarmList->takeItem(0)) != nullptr)
@@ -143,6 +146,7 @@ void SettingsPage::loadSettings() {
     foreach (Alarm a, alarms)
         addAlarm(a.data().time, a.data().type, a.data().difficulty);
 
+    //load widgets enabled
     ui->weatherCheckbox->setChecked(SettingsManager::isWeatherEnabled());
     ui->forecastCheckbox->setChecked(SettingsManager::isForecastEnabled());
     ui->quotesCheckbox->setChecked(SettingsManager::isQuotesEnabled());
@@ -152,6 +156,7 @@ void SettingsPage::loadSettings() {
     ui->commuteCheckbox->setChecked(SettingsManager::isCommuteEnabled());
     ui->newsCheckbox->setChecked(SettingsManager::isNewsEnabled());
 
+    //load widget config
     ui->weatherApiKey->setText(SettingsManager::weatherApiKey());
     ui->weatherLocation->setText(SettingsManager::weatherLocation());
     ui->commuteApiKey->setText(SettingsManager::commuteApiKey());
@@ -176,13 +181,16 @@ void SettingsPage::cancel() {
 void SettingsPage::save() {
     setPageEnabled(false);
 
+    //save time format
     if (ui->clockTimeFormatOptions->currentIndex() <= 0)
         SettingsManager::setClockTimeFormat(HOURFORMAT12);
     else if (ui->clockTimeFormatOptions->currentIndex() == 1)
         SettingsManager::setClockTimeFormat(HOURFORMAT24);
 
+    //save widget transition
     SettingsManager::setWidgetTransitionDuration(ui->slideDurationSlider->value() * 1000);
 
+    //save alarms
     DatabaseManager::removeAlarms();
     int numAlarmsToSave = ui->alarmList->count();
     for(int i = 0; i < numAlarmsToSave; i++) {
@@ -191,6 +199,7 @@ void SettingsPage::save() {
         DatabaseManager::addAlarm(*widget->a);
     }
 
+    //save widgets enabled
     SettingsManager::setIsWeatherEnabled(ui->weatherCheckbox->isChecked());
     SettingsManager::setIsForecastEnabled(ui->forecastCheckbox->isChecked());
     SettingsManager::setIsQuotesEnabled(ui->quotesCheckbox->isChecked());
@@ -200,6 +209,7 @@ void SettingsPage::save() {
     SettingsManager::setIsCommuteEnabled(ui->commuteCheckbox->isChecked());
     SettingsManager::setIsNewsEnabled(ui->newsCheckbox->isChecked());
 
+    //save widgets config
     SettingsManager::setWeatherApiKey(ui->weatherApiKey->text());
     SettingsManager::setWeatherLocation(ui->weatherLocation->text());
     SettingsManager::setCommuteApiKey(ui->commuteApiKey->text());

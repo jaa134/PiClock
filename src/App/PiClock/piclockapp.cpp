@@ -76,6 +76,7 @@ void PiClockApp::transitionToMainPage() {
 }
 
 void PiClockApp::updateProgressBar() {
+    //update load progrss bar. everytime method is called, update the value a set amount
     int current_value = ui->progressBar->value();
     int new_value = current_value + (100 / LOADITEMS);
     ui->progressBar->setValue(new_value);

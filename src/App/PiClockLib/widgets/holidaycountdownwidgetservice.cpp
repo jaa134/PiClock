@@ -4,6 +4,7 @@
 
 HolidayCountdownWidgetService::HolidayCountdownWidgetService()
 {
+    //create an update timer
     int secsPerMin = 3600;
     connect(&updateTimer, &QTimer::timeout, this, &HolidayCountdownWidgetService::update);
     updateTimer.setInterval(1000 * secsPerMin);
@@ -15,6 +16,7 @@ void HolidayCountdownWidgetService::init() {
 }
 
 void HolidayCountdownWidgetService::update() {
+    //read all holidays in from file
     QFile f(":/json/holidays.json");
     f.open(QIODevice::ReadOnly);
     QString s = f.readAll();
@@ -23,6 +25,7 @@ void HolidayCountdownWidgetService::update() {
     QStringList keys = jsonObject.keys();
     f.close();
 
+    //sort the dates that havent already passed
     QList<QDate> dates;
     QDate currentDate = QDate::currentDate();
     foreach (QString dateStr, keys) {
@@ -35,6 +38,7 @@ void HolidayCountdownWidgetService::update() {
     if (dates.isEmpty())
         return;
 
+    //grab the next upcoming holiday to use
     holiday.date = dates.first();
     holiday.name = jsonObject[dates.first().toString(DATEFORMAT)].toString();
 

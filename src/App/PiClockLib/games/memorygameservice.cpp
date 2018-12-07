@@ -17,6 +17,7 @@ MemoryGameService::MemoryGameService()
 void MemoryGameService::reset(Game::Difficulty difficulty) {
     currentPoints = 0;
 
+    //set the number of points reuqired to win
     if (difficulty == Game::Difficulty::Easy)
         pointsToWin = 4;
     if (difficulty == Game::Difficulty::Medium)
@@ -27,8 +28,10 @@ void MemoryGameService::reset(Game::Difficulty difficulty) {
     generateBoard();
 }
 
+//randomly generate a game board
 void MemoryGameService::generateBoard() {
     QList<Card> deck;
+    //setup all the cards
     foreach (QString hexColor, cardColors) {
         Card c;
         c.isMatched = false;
@@ -38,6 +41,7 @@ void MemoryGameService::generateBoard() {
         deck.append(c);
     }
 
+    //put random cards into spots
     std::srand(time(nullptr));
     int numRows = 4;
     int numCols = 4;
@@ -49,6 +53,7 @@ void MemoryGameService::generateBoard() {
 }
 
 QList<MemoryGameService::Card *> MemoryGameService::selectedCards() {
+    //find the selected cards by traversing through the board
     QList<Card *> selected;
     int numRows = 4;
     int numCols = 4;
@@ -62,15 +67,18 @@ QList<MemoryGameService::Card *> MemoryGameService::selectedCards() {
 }
 
 MemoryGameService::MoveOutcome MemoryGameService::playerMove() {
+    //if two cards arent turned over the move was invalid
     QList<Card *> selected = selectedCards();
     if (selected.length() != 2)
         return Invalid;
     Card *c1 = selected.at(0);
     Card *c2 = selected.at(1);
 
+    //if the cards arent selected or are already matched, the move is invalid
     if (!c1->isSelected || !c2->isSelected || c1->isMatched || c2->isMatched)
         return Invalid;
 
+    //if the colors match, the the cards match
     if (c1->colorCode == c2->colorCode) {
         currentPoints += 2;
         c1->isSelected = false;

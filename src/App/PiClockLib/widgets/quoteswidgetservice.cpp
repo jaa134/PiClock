@@ -6,6 +6,7 @@ QuotesWidgetService::QuotesWidgetService() {
 
     manager = nullptr;
 
+    //create update timer
     connect(&updateTimer, &QTimer::timeout, this, &QuotesWidgetService::update);
     updateTimer.setInterval(SettingsManager::widgetTransitionDuration());
 }
@@ -16,6 +17,7 @@ void QuotesWidgetService::init() {
 }
 
 void QuotesWidgetService::update() {
+    //use quote from storage if possible, or make request if none left
     do {
         if (quotes.isEmpty()) {
             getQuotes();
@@ -29,6 +31,7 @@ void QuotesWidgetService::update() {
 }
 
 bool QuotesWidgetService::isValidQuote() {
+    //valid quotes have a size contraint for the ui
     int maxContentLength = 80;
     int maxAuthorLength = 25;
     return quote.content.length() <= maxContentLength
@@ -38,6 +41,7 @@ bool QuotesWidgetService::isValidQuote() {
 }
 
 void QuotesWidgetService::getQuotes() {
+    //make a get request for the quote data
     delete manager;
     manager = new QNetworkAccessManager();
     connect(manager, &QNetworkAccessManager::finished, this, &QuotesWidgetService::generateQuotes);
@@ -46,11 +50,13 @@ void QuotesWidgetService::getQuotes() {
 }
 
 void QuotesWidgetService::generateQuotes(QNetworkReply *reply) {
+    //log any errors
     if (reply->error()) {
         qDebug() << reply->errorString();
         return;
     }
 
+    //read network response and parse json
     QString answer = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(answer.toUtf8());
     QJsonArray jsonArray = jsonResponse.array();
@@ -66,6 +72,7 @@ void QuotesWidgetService::generateQuotes(QNetworkReply *reply) {
     emit updated();
 }
 
+//remove any special characters
 QString QuotesWidgetService::toPlainString(QString ques) {
     QTextDocument text;
     text.setHtml(ques);
